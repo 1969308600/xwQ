@@ -1,0 +1,39 @@
+<pre class="layui-code">
+//代码
+</pre> 
+
+<div class="layui-tab-content">
+	<button class="layui-btn"  ng-click="doAdd()">
+	  <i class="layui-icon">&#xe608;</i>新增
+	</button>
+	 
+	<button class="layui-btn layui-btn-sm layui-btn-primary" onclick="window.location.reload();">
+	  <i class="layui-icon">&#x1002;</i>
+	</button>
+	
+	<table class="layui-table">
+	  <colgroup>
+	    <col ng-repeat="v in column"  width='ng-bind: v.width' >
+	  </colgroup>
+	  <thead>
+	    <tr>
+	      <th ng-repeat="v in column">{{v.field}}</th> 
+	    </tr> 
+	  </thead>
+	  <tbody>
+	    <tr ng-repeat="v in dataList">
+	      <td>{{v.id}}</td>
+	      <td>{{v.name}}</td>
+	      <td>{{v.code}}</td>
+	      <td>{{v.urlKey}}</td>
+	      <td>{{v.urlHtml}}</td>
+	      <td>{{v.urlCtrl}}</td>
+	      <td>{{v.key}}</td>
+	    </tr> 
+	  </tbody>
+	</table>
+	
+	<div id ="layuiPageForTest1"></div>
+</div>
+
+ 

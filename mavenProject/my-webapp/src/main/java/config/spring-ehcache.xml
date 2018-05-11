@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!-- /** * * 缓存配置 *  * */ -->  
+<beans xmlns="http://www.springframework.org/schema/beans"  
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"  
+    xmlns:cache="http://www.springframework.org/schema/cache"  
+    xmlns:aop="http://www.springframework.org/schema/aop"  
+    xsi:schemaLocation="      
+    http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd      
+	http://www.springframework.org/schema/cache
+	http://www.springframework.org/schema/cache/spring-cache.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop.xsd">  
+   
+   <!-- 估计用到了aop或者代理来实现  ehcache   aspectjweaver。jar还有包 -->
+   <aop:config proxy-target-class="true" /> 
+   
+   
+   <!-- spring 注解缓存开启 -->
+    <cache:annotation-driven cache-manager="cacheManager" />  
+
+      <bean id="ehcache" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">  
+        <property name="configLocation" value="classpath:config/ehcache.xml"></property>  
+        <property name="shared" value="true"/><!-- 这句话是设置是否多个实列,true为单个 -->
+    </bean>   
+    
+      <bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager">  
+        <property name="cacheManager" ref="ehcache"></property>  
+    </bean>   
+     
+	
+</beans>  

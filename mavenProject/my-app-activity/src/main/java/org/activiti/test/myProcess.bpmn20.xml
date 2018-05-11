@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<definitions id="definitions"
+             targetNamespace="http://activiti.org/bpmn20"
+             xmlns="http://www.omg.org/spec/BPMN/20100524/MODEL"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xmlns:activiti="http://activiti.org/bpmn">
+	<process id="process" name="process">
+		<startEvent  id="sid-fb4c37a7-1a9e-41df-9e67-e98a007cda69" />
+		<userTask id="sid-c629db4a-bfee-4af2-bf85-8f9473dfcf2c"
+			name="data enter" />
+		<sequenceFlow 
+			id="sid-aaead53e-8f7c-434a-89d7-9e045f2cd8aa"
+			sourceRef="sid-fb4c37a7-1a9e-41df-9e67-e98a007cda69"
+			targetRef="sid-c629db4a-bfee-4af2-bf85-8f9473dfcf2c" />
+		<userTask id="sid-9c2c9585-a9a3-4b19-a827-d1e3890a2c67"
+			name="verify" activiti:assignee="#{userid}"
+			activiti:candidategroups="group1" />
+		<sequenceFlow
+			id="sid-3a051476-6978-4edb-95c4-95477d8db88f"
+			sourceRef="sid-c629db4a-bfee-4af2-bf85-8f9473dfcf2c"
+			targetRef="sid-9c2c9585-a9a3-4b19-a827-d1e3890a2c67" />
+		<userTask id="sid-1a660bfb-e973-4de2-adfe-be4fa0f83fa4"
+			name="next" activiti:assignee="#{userid2}"
+			activiti:candidategroups="group2" />
+		<endEvent id="sid-cfee5447-e6e2-4fa9-aea4-b48700ef29e1" />
+		<sequenceFlow
+			id="sid-ab884fd3-788b-4130-a6f1-cbeaadf5e3cb"
+			sourceRef="sid-1a660bfb-e973-4de2-adfe-be4fa0f83fa4"
+			targetRef="sid-cfee5447-e6e2-4fa9-aea4-b48700ef29e1" />
+		<sequenceFlow
+			id="sid-18341c55-f1fc-43cd-8747-050f2762d930"
+			sourceRef="sid-9c2c9585-a9a3-4b19-a827-d1e3890a2c67"
+			targetRef="sid-1a660bfb-e973-4de2-adfe-be4fa0f83fa4" />
+	</process>
+	 
+</definitions>
