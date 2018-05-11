@@ -1,0 +1,14 @@
+﻿mvn site 生成所有依赖html
+mvn verify 检查生成jar/war 并编译
+mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-app -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false生成项目
+mvn package 打包，并编译
+mvn deploy 发布，以便其他人员使用
+mvn install 发布到本地仓库，供其他项目依赖
+mvn process-resources
+mvn compile 
+mvn install
+mvn clean
+
+
+
+jar tvf my-webapp/target/my-webapp-1.0-SNAPSHOT.war

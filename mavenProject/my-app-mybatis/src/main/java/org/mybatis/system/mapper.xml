@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<mapper namespace="org.mybatis.system.SystemMapperI">
+    <!-- 以下两个<cache>标签 可以输出日志 -->  
+	<cache type="org.mybatis.caches.ehcache.LoggingEhcache" />  
+  
+	<select id="getMenuList" resultType="org.mybatis.system.SystemMapper" >
+    	select * from t_sys_menu limit #{page},#{limit};
+	</select>
+	
+	<select id="getMenuCountForList" useCache="true" resultType="int" >
+   		select count(id) as count from t_sys_menu  ;
+	</select>
+	
+	
+	<select id="getMenu" resultType="org.mybatis.system.SystemMapper" >
+   		select * from t_sys_menu  ;
+	</select>
+</mapper>

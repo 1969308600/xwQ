@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="content-type" content="text/html; charset=UTF-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>xwQ test!</title>
+<link rel="stylesheet" href="../css/layui.css">
+<link rel="icon" href="../image/me.png" type="image/x-icon" />
+</head>
+<body class="layui-layout-body">
+	<div class="layui-layout layui-layout-admin"
+		ng-controller="myAppController">
+		<div class="layui-header">
+			<div class="layui-logo">{{test}}</div>
+			<ul class="layui-nav layui-layout-left">
+				<!-- 父级菜单 -->
+				<li ng-repeat="v in menus" class="layui-nav-item"
+					ng-click="choiceMenu(v.id)"><a ng-if="v.level==1" href="">{{v.name}}</a></li>
+			</ul>
+			<ul class="layui-nav layui-layout-right">
+				<li class="layui-nav-item"><a href="javascript:;"> <img
+						src="../image/me.png" class="layui-nav-img">{{test}}
+				</a>
+					<dl class="layui-nav-child">
+						<dd>
+							<a href="/test">基本资料</a>
+						</dd>
+						<dd>
+							<a href="">安全设置</a>
+						</dd>
+					</dl></li>
+				<li class="layui-nav-item"><a href="">退了</a></li>
+			</ul>
+		</div>
+
+		<div class="layui-side layui-bg-black">
+			<div class="layui-side-scroll">
+				<ul class="layui-nav layui-nav-tree">
+					<!-- 子级菜单 -->
+					<li class="layui-nav-item" ng-repeat="v in menus" id="childMenu{{v.id}}"
+						ng-if="v.parent==thisMenu"><a href="#!/{{v.urlKey}}">{{v.name}}
+					</a></li>
+				</ul>
+			</div>
+		</div>
+		
+		<div class="layui-body">
+			<!-- 内容主体区域 -->
+	<!-- 		<div ng-view></div> -->
+			<div ui-view></div>
+		</div>
+		
+		<div class="layui-footer">
+			<!-- 底部固定区域 -->
+			© it is {{test}}
+		</div>
+
+	</div>
+	<script src="../js/require/require.jsx" data-main="../js/main"></script>
+</body>
+</html>
