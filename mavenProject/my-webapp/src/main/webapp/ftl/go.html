@@ -1,22 +1,21 @@
 <!DOCTYPE html>
-<html>
+<html 	ng-controller="myAppController">
 <head>
 <meta name="content-type" content="text/html; charset=UTF-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1">
-<title>xwQ test!</title>
+<title>{{test}}-{{currMenuName}}</title>
 <link rel="stylesheet" href="../css/layui.css">
 <link rel="icon" href="../image/me.png" type="image/x-icon" />
 </head>
 <body class="layui-layout-body">
-	<div class="layui-layout layui-layout-admin"
-		ng-controller="myAppController">
+	<div class="layui-layout layui-layout-admin" >
 		<div class="layui-header">
 			<div class="layui-logo">{{test}}</div>
 			<ul class="layui-nav layui-layout-left">
 				<!-- 父级菜单 -->
 				<li ng-repeat="v in menus" class="layui-nav-item"
-					ng-click="choiceMenu(v.id)"><a ng-if="v.level==1" href="">{{v.name}}</a></li>
+					ng-click="choiceMenu(v.id,v.name)"><a ng-if="v.level==1" href="">{{v.name}}</a></li>
 			</ul>
 			<ul class="layui-nav layui-layout-right">
 				<li class="layui-nav-item"><a href="javascript:;"> <img
