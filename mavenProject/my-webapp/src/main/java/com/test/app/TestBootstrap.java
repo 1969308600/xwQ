@@ -1,4 +1,4 @@
-package com.test.app;
+/*package com.test.app;
 
 import org.apache.catalina.startup.Bootstrap;
 
@@ -28,3 +28,4 @@ public class TestBootstrap {
 	}
 
 }
+*/

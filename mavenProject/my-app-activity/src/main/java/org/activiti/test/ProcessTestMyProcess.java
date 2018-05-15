@@ -1,4 +1,4 @@
-package org.activiti.test;
+/*package org.activiti.test;
 
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -85,4 +85,4 @@ public class ProcessTestMyProcess {
 		
 	}
 	 
-}
+}*/

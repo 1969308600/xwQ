@@ -1,4 +1,4 @@
-package org.activiti.designer.test;
+/*package org.activiti.designer.test;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -9,8 +9,7 @@ import org.activiti.engine.RepositoryService;
 import org.activiti.engine.RuntimeService;
 import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.test.ActivitiRule;
-import org.junit.Rule;
-import org.junit.Test;
+ 
 
 public class ProcessTestMyProcess {
 
@@ -69,7 +68,7 @@ public class ProcessTestMyProcess {
 //	    }
 
 	}
-	/* @Test
+	 @Test
 	 @Deployment(resources="resources/MyProcess.bpmn")
 	 public void testXmltoBpmn() throws XMLStreamException{
 		 RepositoryService repositoryService = activitiRule.getRepositoryService();
@@ -90,5 +89,5 @@ public class ProcessTestMyProcess {
 	     org.activiti.bpmn.model.Process process = bpmnModel.getMainProcess();
 	     //验证转换的流程id
 	     assertEquals("leave",process.getId());                  
-	 }*/
-}
+	 }
+}*/
