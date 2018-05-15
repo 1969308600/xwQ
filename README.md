@@ -1,1 +1,1 @@
-# it is a test，ssm
+# it is a test，ssm，ecache，activity，activeMQ
