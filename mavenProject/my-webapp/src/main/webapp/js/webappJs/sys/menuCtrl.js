@@ -42,7 +42,6 @@ define([ 'app', 'layui' ], function(app) {
 				$scope.data = JSON.parse(v);
 				$scope.dataList = $scope.data.data;
 				$.post("../system/getMenuCountForList.do",  {} , function(v) {
-					debugger
 					$scope.count = v;
 					$scope.$digest();
 				});
@@ -68,7 +67,6 @@ define([ 'app', 'layui' ], function(app) {
 								'count' ],
 						jump : function(obj, first) {
 							//obj包含了当前分页的所有参数，比如：obj.curr  obj.limit
-							debugger
 							$scope.Page.limit =   obj.curr *obj.limit;
 							$scope.Page.page = (obj.curr-1)*obj.limit;
 							 $scope.Page.currPage = obj.curr;
@@ -88,10 +86,25 @@ define([ 'app', 'layui' ], function(app) {
 			});
 		}
 		$scope.doAdd = function() {
-			$.post("../system/save.do", $scope.object, function(v) {
-				debugger;
-				location.reload();
-			});
+			
+			 layer.open({
+				  type: 2, 
+				  content: '../ftl/sys/menuAddForm.html' //这里content是一个URL，如果你不想让iframe出现滚动条，你还可以content: ['http://sentsin.com', 'no']
+				  ,btn: ['按钮一', '按钮二' ]
+				  ,yes: function(index, layero){  //按钮【按钮一】的回调  不会关闭
+//					  $.post("../system/save.do", $scope.object, function(v) {
+//							debugger;
+//							location.reload();
+//						});
+					  layer.close(index);//不会自动关闭，所以调用一次
+				  }
+				  ,btn2: function(index, layero){ //按钮【按钮二】的回调    //return false 开启该代码可禁止点击该按钮关闭
+				  } 
+				  ,cancel: function(){  //右上角关闭回调
+				  }
+				 });
+			
+			
 		}
 
 		$scope.getList();

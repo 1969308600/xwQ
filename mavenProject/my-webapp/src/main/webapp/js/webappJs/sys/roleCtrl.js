@@ -1,14 +1,8 @@
 /**
  * 
  */
-/**
- * 
- */
-define(['app'], function(app) {
-	return function roleCtrl($scope){
-		debugger;
-	    $scope.object = {}
-	    $scope.object.username = 'Hola!';
-	    $scope.object.userAge = '22!';
-	} 
+define([ 'app' ], function(app) {
+	app.controller('roleCtrl', [ '$scope', function($scope) {
+		debugger
+	} ])
 })

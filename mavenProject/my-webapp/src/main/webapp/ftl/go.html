@@ -1,55 +1,63 @@
 <!DOCTYPE html>
-<html 	ng-controller="myAppController">
+<html ng-controller="myAppController">
 <head>
 <meta name="content-type" content="text/html; charset=UTF-8">
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, maximum-scale=1">
 <title>{{test}}-{{currMenuName}}</title>
 <link rel="stylesheet" href="../css/layui.css">
-<link rel="icon" href="../image/me.png" type="image/x-icon" />
+<link rel="icon" href="../image/me.jpg" type="image/x-icon" />
 </head>
+ 
 <body class="layui-layout-body">
-	<div class="layui-layout layui-layout-admin" >
-		<div class="layui-header">
-			<div class="layui-logo">{{test}}</div>
-			<ul class="layui-nav layui-layout-left">
-				<!-- 父级菜单 -->
-				<li ng-repeat="v in menus" class="layui-nav-item"
-					ng-click="choiceMenu(v.id,v.name)"><a ng-if="v.level==1" href="">{{v.name}}</a></li>
-			</ul>
-			<ul class="layui-nav layui-layout-right">
-				<li class="layui-nav-item"><a href="javascript:;"> <img
-						src="../image/me.png" class="layui-nav-img">{{test}}
-				</a>
-					<dl class="layui-nav-child">
-						<dd>
-							<a href="/test">基本资料</a>
-						</dd>
-						<dd>
-							<a href="">安全设置</a>
-						</dd>
-					</dl></li>
-				<li class="layui-nav-item"><a href="">退了</a></li>
-			</ul>
-		</div>
+	<div class="layui-layout layui-layout-admin">
 
-		<div class="layui-side layui-bg-black">
-			<div class="layui-side-scroll">
-				<ul class="layui-nav layui-nav-tree">
-					<!-- 子级菜单 -->
-					<li class="layui-nav-item" ng-repeat="v in menus" id="childMenu{{v.id}}"
-						ng-if="v.parent==thisMenu"><a href="#!/{{v.urlKey}}">{{v.name}}
-					</a></li>
-				</ul>
+		<div class="layui-side layui-bg-black" style="top: 0px;">
+			<div  style="height: 110px; margin: 40px 40px 0px 40px">
+				<div ><img src="../image/me.jpg" width="70" height="70" style="border-radius:50%"/></div>
+				<div>{{test}}</div>
+				<div>研发部</div>
+			</div>
+			<div class='layui-card-body'>
+				<div id="divForTree"></div>
 			</div>
 		</div>
-		
-		<div class="layui-body">
+
+		<div class="layui-body" style="top: 0px;">
+
+			<div style="width: 100%; height: 60px; margin: 10px">
+				<div  style="width: 200px; float: left; line-height: 40px; margin: 5px 5px 5px 0px;display: inline;">
+					<div style="width:20px;float: left;margin-left: 15px">
+						<i class="layui-icon" >	&#xe615;</i>
+					</div>
+					<div style="width:160px;float: left;">
+					<input type="text" style="border: none;" name="title" required
+						lay-verify="required" placeholder="输入你需要的搜索内容..." autocomplete="off"
+						class="layui-input">
+						</div>
+				</div>
+				<div style="width: 260px; float: right; line-height: 40px; margin: 5px">Q，欢迎来到{{test}}平台！
+					&nbsp;
+					
+					<label style="cursor: pointer;margin:10px" >
+						<img  src="../image/logout.png" width="20" height="20"  >&nbsp;退出
+					</label>
+				</div>
+			</div>
+			
+ 			<div style="float:left;width:20px;height:24px;margin:10px 0px 10px 1.5%;line-height:24px; ">
+ 			<i class="layui-icon" >&#xe614;</i></div>
+			<div class="layui-tab" lay-allowClose="true" lay-filter="demo">
+				<ul class="layui-tab-title">
+				</ul>
+			</div>
+			
 			<!-- 内容主体区域 -->
-	<!-- 		<div ng-view></div> -->
-			<div ui-view></div>
+			<div class='layui-card-body'>
+				<div ui-view></div>
+			</div>
 		</div>
-		
+
 		<div class="layui-footer">
 			<!-- 底部固定区域 -->
 			© it is {{test}}

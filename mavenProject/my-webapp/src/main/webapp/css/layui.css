@@ -1,4 +1,11 @@
 /** layui-v2.2.6 MIT License By https://www.layui.com */
+ 
+ .m20{
+ 	margin:20px;
+ }
+ .ml20{
+ 	margin-left:20px;
+ }
  .layui-inline,img {
 	display:inline-block;
 	vertical-align:middle
@@ -63,11 +70,11 @@ hr {
 	clear:both
 }
 a {
-	color:#333;
+	color:#a7b1c2;
 	text-decoration:none
 }
 a:hover {
-	color:#777
+	color:#ffffff
 }
 a cite {
 	font-style:normal;
@@ -1322,7 +1329,7 @@ a cite {
 	background-color:#1E9FFF!important
 }
 .layui-bg-black {
-	background-color:#393D49!important
+	background-color:#393D49
 }
 .layui-bg-gray {
 	background-color:#eee!important;
@@ -2612,7 +2619,7 @@ body .layui-table-tips .layui-layer-content {
 }
 .layui-tree li i {
 	padding-left:6px;
-	color:#333;
+	color:#a7b1c2;
 	-moz-user-select:none
 }
 .layui-tree li .layui-tree-check {

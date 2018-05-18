@@ -26,6 +26,10 @@ public class systemService implements SystemBaseServiceI<SystemMapper>{
 	public List<Object> getMenu( String rcacheKey){
 		return sqlSessionTemplate.selectList("getMenu");
 	}
+	@Cacheable(value="userCache",key="#rcacheKey",condition="1==1")
+	public List<Object> getDeptList( String rcacheKey){
+		return sqlSessionTemplate.selectList("getDept");
+	}
 	
  
 	public int getMenuCountForList() {

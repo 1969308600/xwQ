@@ -43,6 +43,17 @@ public class SystemConroller {
     	lu.setData(list);  
 		return JSONObject.fromObject(lu).toString();
 	}
+	//列表
+	@RequestMapping(value = "getDeptList.do",produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public String getDeptList(HttpServletResponse resp) {
+		
+		List<Object> list = systems.getDeptList( "getDeptList");
+		Layui lu = new Layui();
+		lu.setData(list);  
+		String res = JSONObject.fromObject(lu).toString();
+		return res;
+	}
 	 
 	//列表
 	@RequestMapping(value = "getMenuCountForList.do")
