@@ -1,90 +1,90 @@
 ﻿<project xmlns="http://maven.apache.org/POM/4.0.0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
                       http://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
- 
-  <groupId>com.mycompany.app</groupId>
-  <artifactId>app</artifactId>
-  <version>1.0-SNAPSHOT</version>
-  <packaging>pom</packaging>
- 
-  <modules>
-    <module>my-app</module>
-    <module>my-webapp</module>
-    <module>my-app-activity</module>
-     <module>my-app-mybatis</module>
-<module>my-app-hibernate</module>
-<module>my-app-ActiveMQ</module>
-<!-- <module>my-app-ehcache</module> -->
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.mycompany.app</groupId>
+	<artifactId>app</artifactId>
+	<version>1.0-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<modules>
+		<module>my-app</module>
+		<module>my-webapp</module>
+		<module>my-sso</module>
+		<module>my-app-activity</module>
+		<module>my-app-mybatis</module>
+		<module>my-app-hibernate</module>
+		<module>my-app-ActiveMQ</module>
+		<!-- <module>my-app-ehcache</module> -->
 
 
-  </modules>
-<build>
-  <plugins>
-    <plugin>
-      <groupId>org.apache.maven.plugins</groupId>  
-            <artifactId>maven-compiler-plugin</artifactId>  
-            <version>3.7.0</version>  
-            <configuration>  
-                <source>1.8</source>  
-                <target>1.8</target>  
-            </configuration>  
-    </plugin>
-  </plugins>
-</build>
- <!-- 使用Maven部署构件到Nexus：maven-releases，maven-snapshots需要在setting中指定username和password
-     在项目正常开发中，快照版本的构件可以部署到Nexus中策略为Snapshot的例如：maven-snapshots宿主仓库中，发布版本可以部署到Nexus中策略为Release的例如：maven-releases宿主仓库中，项目的POM文件配置如下： -->
-    <distributionManagement>  
-        <repository>  
-            <id>maven-releases</id>  
-            <name>Nexus-releases-repositories</name>  
-            <url>http://localhost:8081/repository/maven-releases/</url>  
-        </repository>  
-        <snapshotRepository>  
-            <id>maven-snapshots</id>  
-            <name>Nexus-snapshots-repositories</name>  
-            <url>http://localhost:8081/repository/maven-snapshots/</url>  
-        </snapshotRepository>  
-  </distributionManagement>  
+	</modules>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.7.0</version>
+				<configuration>
+					<source>1.8</source>
+					<target>1.8</target>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+	<!-- 使用Maven部署构件到Nexus：maven-releases，maven-snapshots需要在setting中指定username和password 
+		在项目正常开发中，快照版本的构件可以部署到Nexus中策略为Snapshot的例如：maven-snapshots宿主仓库中，发布版本可以部署到Nexus中策略为Release的例如：maven-releases宿主仓库中，项目的POM文件配置如下： -->
+	<distributionManagement>
+		<repository>
+			<id>maven-releases</id>
+			<name>Nexus-releases-repositories</name>
+			<url>http://localhost:8081/repository/maven-releases/</url>
+		</repository>
+		<snapshotRepository>
+			<id>maven-snapshots</id>
+			<name>Nexus-snapshots-repositories</name>
+			<url>http://localhost:8081/repository/maven-snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
 
 
-<!-- 配置Maven从Nexus下载构件：
-     我们可以在项目的POM中配置仓库和插件仓库，当然如果我们想要所有的Maven项目都使用私服，可以在settings.xml中配置，但是settings.xml并不直接支持配置repositories和pluginRepositories，但是Maven提供了profiles下的profile可以让我们定义一系列的配置信息，然后指定其激活条件，能够定义在settings.xml中的信息有<repositories>、<pluginRepositories>和<properties>。定义在<properties>里面的键值对可以在pom.xml中使用，这里我们配置远程仓库的地址和插件仓库。 -->
+	<!-- 配置Maven从Nexus下载构件： 我们可以在项目的POM中配置仓库和插件仓库，当然如果我们想要所有的Maven项目都使用私服，可以在settings.xml中配置，但是settings.xml并不直接支持配置repositories和pluginRepositories，但是Maven提供了profiles下的profile可以让我们定义一系列的配置信息，然后指定其激活条件，能够定义在settings.xml中的信息有<repositories>、<pluginRepositories>和<properties>。定义在<properties>里面的键值对可以在pom.xml中使用，这里我们配置远程仓库的地址和插件仓库。 -->
 
-  <profiles>  
-      <!--   <profile>  
-            <id>jdk8</id>  
-            <activation>  
-                <activebydefault>true</activebydefault>  
-                <jdk>1.8</jdk>  
-            </activation>  
-            <properties>  
-                <maven.compiler.source>1.8</maven.compiler.source>  
-                <maven.compiler.target>1.8</maven.compiler.target>  
-                <maven.compiler.compilerversion>1.8</maven.compiler.compilerversion>  
-            </properties>  
-        </profile>   -->
-        <profile>  
-            <id>nexusRep</id>  
-            <repositories>  
-                <repository>  
-                    <id>nexus</id>  
-                    <name>Nexus Repository</name>  
-                    <url>http://localhost:8081/repository/maven-public/</url>  
-                    <releases><enabled>true</enabled></releases>  
-                    <snapshots><enabled>true</enabled></snapshots>  
-                </repository>  
-            </repositories>  
-             <pluginRepositories>  
-                <pluginRepository>  
-                    <id>nexus</id>  
-                    <name>Nexus pluginRepository</name>  
-                    <url>http://localhost:8081/repository/maven-public/</url>  
-                    <releases><enabled>true</enabled></releases>  
-                    <snapshots><enabled>true</enabled></snapshots>  
-                </pluginRepository>  
-            </pluginRepositories>  
-        </profile>  
-</profiles>  
+	<profiles>
+		<!-- <profile> <id>jdk8</id> <activation> <activebydefault>true</activebydefault> 
+			<jdk>1.8</jdk> </activation> <properties> <maven.compiler.source>1.8</maven.compiler.source> 
+			<maven.compiler.target>1.8</maven.compiler.target> <maven.compiler.compilerversion>1.8</maven.compiler.compilerversion> 
+			</properties> </profile> -->
+		<profile>
+			<id>nexusRep</id>
+			<repositories>
+				<repository>
+					<id>nexus</id>
+					<name>Nexus Repository</name>
+					<url>http://localhost:8081/repository/maven-public/</url>
+					<releases>
+						<enabled>true</enabled>
+					</releases>
+					<snapshots>
+						<enabled>true</enabled>
+					</snapshots>
+				</repository>
+			</repositories>
+			<pluginRepositories>
+				<pluginRepository>
+					<id>nexus</id>
+					<name>Nexus pluginRepository</name>
+					<url>http://localhost:8081/repository/maven-public/</url>
+					<releases>
+						<enabled>true</enabled>
+					</releases>
+					<snapshots>
+						<enabled>true</enabled>
+					</snapshots>
+				</pluginRepository>
+			</pluginRepositories>
+		</profile>
+	</profiles>
 </project>

@@ -33,5 +33,8 @@
 	<select id="getDept" resultMap="dept">
 		select * from t_sys_dpt order by id asc,sort desc;
 	</select>
+	<select id="getUserByNameAndCode" resultType="int">
+		select * from t_sys_user where name=#{userName} and code = #{userCode};
+	</select>
 
 </mapper>

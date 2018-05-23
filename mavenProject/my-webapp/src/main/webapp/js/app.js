@@ -39,7 +39,7 @@ define([ 'angularAMD', 'angular-route', 'angular', 'jquery', 'systemConfigs',
 		// 获取系统 菜单  设置选项卡
 		$scope.getSysTemMenu = function() {
 			 
-			$.post("/system/getMenu.do", {}, function(res) {// 预留角色参数，后期将以角色获取菜单。
+			$.post("/webapp/system/getMenu.do", {}, function(res) {// 预留角色参数，后期将以角色获取菜单。
 				// console.log("menus:"+res);
 				$scope.menus = JSON.parse(res).data;//如果静态资源保持高度一致  这句话就是多余的
 				$scope.$digest();

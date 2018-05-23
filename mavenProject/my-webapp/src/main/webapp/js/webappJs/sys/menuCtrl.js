@@ -81,7 +81,7 @@ define([ 'app', 'layui' ], function(app) {
 		});
 
 		$scope.doUpdate = function() {
-			$.post("../system/save.do", $scope.object, function(v) {
+			$.post("../webapp/system/save.do", $scope.object, function(v) {
 				debugger;
 			});
 		}

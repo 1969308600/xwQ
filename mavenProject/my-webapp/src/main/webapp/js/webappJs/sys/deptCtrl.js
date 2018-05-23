@@ -15,7 +15,7 @@ define([ 'app','systemConfigs' ], function(app) {
 		        var treeGrid = layui.treeGrid; //很重要
 		        var treeTable =treeGrid.render({
 		            elem: '#treegrid_test'
-		            ,url:'/system/getDeptList.do'
+		            ,url:'/webapp/system/getDeptList.do'
 		            //,data:sysMenus
 		            ,cellMinWidth: 100
 		            ,$scope:$scope
@@ -54,7 +54,7 @@ define([ 'app','systemConfigs' ], function(app) {
 		 $scope.beforeAdd=function(){
 			 layer.open({
 			  type: 2, 
-			  content: '../ftl/sys/deptAddForm.html' //这里content是一个URL，如果你不想让iframe出现滚动条，你还可以content: ['http://sentsin.com', 'no']
+			  content: '/webapp/ftl/sys/deptAddForm.html' //这里content是一个URL，如果你不想让iframe出现滚动条，你还可以content: ['http://sentsin.com', 'no']
 			  ,btn: ['按钮一', '按钮二' ]
 			  ,yes: function(index, layero){  //按钮【按钮一】的回调  不会关闭
 				  layer.close(index);//不会自动关闭，所以调用一次

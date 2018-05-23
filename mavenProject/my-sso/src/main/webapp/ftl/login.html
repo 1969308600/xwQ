@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html ng-controller="myAppController">
+<head>
+<meta name="content-type" content="text/html; charset=UTF-8">
+<meta name="viewport"
+	content="width=device-width, initial-scale=1, maximum-scale=1">
+<title>login</title>
+<link rel="stylesheet" href="../css/layui.css">
+<link rel="stylesheet" href="../css/login.css">
+<link rel="icon" href="../image/me.jpg" type="image/x-icon" />
+</head>
+<style type="text/css">
+.demobackGround {
+    background: url(../image/loginBackGround.jpg) repeat;
+    width: 100%;
+    height: 100%; 
+    position:absolute;
+    background-size:cover;
+}
+</style>
+<body style=""> 
+<div class="demobackGround">
+    <div class="login">
+        <div class="login-form" style="width:600px">
+        
+        <div style="background-color: #dcd0b1;height:240px;margin:40px;">
+        	<div style="float:left;width:160px;height:210px;margin:15px;">
+        	
+        	<strong>测试平台:</strong>
+        	<div style="margin:20px 10px 10px 10px">
+        	欢迎使用测试平台！
+        	</div>
+        	<ul style="margin:20px 10px 20px 10px">
+        		<li><i class="layui-icon">&#xe605;</i> &nbsp;layui</li>
+        		<li><i class="layui-icon">&#xe605;</i> &nbsp;ssm</li>
+        		<li><i class="layui-icon">&#xe605;</i> &nbsp;angular</li>
+        		<li><i class="layui-icon">&#xe605;</i> &nbsp;activety</li>
+        		<li><i class="layui-icon">&#xe605;</i> &nbsp;activemq</li>
+        		<li><i class="layui-icon">&#xe605;</i> &nbsp;ftl</li>
+        		<li><i class="layui-icon">&#xe605;</i> &nbsp;....</li>
+        	</ul>
+        	</div>
+	        <div style="float:left;width:310px;">
+	            <fieldset class="layui-elem-field layui-field-title">
+	                <legend>登录测试</legend>
+	            </fieldset>
+	            <form class="layui-form layui-form-pane">
+	                <div class="layui-form-item">
+	                    <label class="layui-form-label">用户</label>
+	                    <div class="layui-input-inline">
+	                        <input type="text" name="code" required="" lay-verify="required" placeholder="用户名/用户编号" autocomplete="off" class="layui-input" value="demo">
+	                    </div>
+	                </div>
+	                <div class="layui-form-item">
+	                    <label class="layui-form-label">密码</label>
+	                    <div class="layui-input-inline">
+	                        <input type="password" name="pwd" required="" lay-verify="required" placeholder="密码" class="layui-input" value="123456">
+	                    </div>
+	                </div>
+	                <div class="layui-form-item">
+	                    <div class="layui-input-block">
+	                        <a class="layui-btn" onclick="dologin();" lay-filter="login">登录</a>
+	                        <button type="reset" class="layui-btn layui-btn-primary">注册</button>
+	                    </div>
+	                </div>
+	            </form>
+	            </div>
+	            </div>
+        </div>
+    </div>
+    <div class="site-demo-foot"><a href="http://www.miitbeian.gov.cn/">蜀ICP备17021518号</a></div>
+</div>
+<script type="text/javascript" src="../js/jquery/jquery-3.3.1.js"></script>
+<script type="text/javascript">
+debugger;
+function dologin(){
+	var code = $('input[name="code"]').val();
+	var pwd = $('input[name="pwd"]').val();
+	$.post("system/doLogin.do",{code:code,pwd:pwd},function(res){
+		debugger;
+	},"POST")
+	
+}
+</script>
+</body></html>
