@@ -14,6 +14,7 @@ import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.mycompany.app.entity.CacheEntity;
 
@@ -30,6 +31,7 @@ public class CacheRedis  implements Serializable{
 	  /**
      * ÃÌº”∂‘œÛ
      */
+	@Transactional
     public boolean add(final CacheEntity member) { 
     	
         boolean result = redisTemplate.execute(new RedisCallback<Boolean>() {  

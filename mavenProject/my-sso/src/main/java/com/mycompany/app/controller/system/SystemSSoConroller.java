@@ -42,26 +42,20 @@ public class SystemSSoConroller {
 	public boolean sign(SystemUser user,HttpServletResponse resp,HttpSession session) {
 		
 		SystemUser selectUser = (SystemUser) systems.getUserByNameAndCode(user);
-	 	if(null!=session.getAttribute(session.getId())&&(boolean)session.getAttribute(session.getId())){
+	 	if(null!=session.getAttribute(session.getId())  
+	 			&&session.getAttribute(session.getId())==selectUser.getSafeKey()){
 			return true;
 		}
 		if(null!=selectUser) {
-			//session 共享
-			if(null!=selectUser.getSafeKey()) {
-				
-			}
-			boolean boo = cacheRedis.add(new CacheEntity(session.getId(), JSONObject.fromObject(user).toString()));
-			//sessionid放入数据库
-			if(boo) {
+			boolean boo = cacheRedis.add(new CacheEntity(session.getId()
+					, JSONObject.fromObject(user).toString()));	//共享到redis  缺乏加密机制  ，sha-1或者md5，使用+appid的方式安全性会跟高些
+			if(boo) {//session 共享   保存到数据库
+				selectUser.setSafeKey(session.getId());
+				systems.setUserSessionIdByUser(selectUser);
 				return true;
-			}else {
-				return false;
-			}
-//			session.setAttribute(session.getId(), true);  
-//			session.setAttribute("userObj", selectUser);
-		}else {
-			return false;
+			} 
 		}
+		return false;
 	
 //		
 	}

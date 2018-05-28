@@ -8,6 +8,7 @@ import org.mybatis.system.SystemUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.mybatis.web.test.Page;
 import com.mycompany.app.service.SystemBaseServiceI;
@@ -33,6 +34,16 @@ public class systemService implements SystemBaseServiceI<SystemMapper>{
 	}
 	
 	public  Object getUserByNameAndCode(SystemUser u){
+		return sqlSessionTemplate.selectOne("getUserByNameAndCode",u);
+	}
+	
+	/**
+	 * ¹²ÏísessionId
+	 * @param u
+	 * @return
+	 */
+	@Transactional
+	public  Object setUserSessionIdByUser(SystemUser u){
 		return sqlSessionTemplate.selectOne("getUserByNameAndCode",u);
 	}
 	
