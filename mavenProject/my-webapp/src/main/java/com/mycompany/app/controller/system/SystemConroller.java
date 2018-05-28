@@ -62,14 +62,7 @@ public class SystemConroller {
 		int count = systems.getMenuCountForList(  );
 		return count;
 	}
-	
-	//列表
-	@RequestMapping(value = "doLogin.do")
-	@ResponseBody
-	public String doLogin(HttpServletResponse resp) {
-		List<Object> count = systems.getUserByNameAndCode();
-		return null;
-	}
+	 
 	
 
 }

@@ -48,13 +48,13 @@
 	                <div class="layui-form-item">
 	                    <label class="layui-form-label">用户</label>
 	                    <div class="layui-input-inline">
-	                        <input type="text" name="code" required="" lay-verify="required" placeholder="用户名/用户编号" autocomplete="off" class="layui-input" value="demo">
+	                        <input type="text" name="code" required="" lay-verify="required" placeholder="用户名/用户编号" autocomplete="off" class="layui-input" value="code0001">
 	                    </div>
 	                </div>
 	                <div class="layui-form-item">
 	                    <label class="layui-form-label">密码</label>
 	                    <div class="layui-input-inline">
-	                        <input type="password" name="pwd" required="" lay-verify="required" placeholder="密码" class="layui-input" value="123456">
+	                        <input type="password" name="password" required="" lay-verify="required" placeholder="密码" class="layui-input" value="1234">
 	                    </div>
 	                </div>
 	                <div class="layui-form-item">
@@ -72,13 +72,16 @@
 </div>
 <script type="text/javascript" src="../js/jquery/jquery-3.3.1.js"></script>
 <script type="text/javascript">
-debugger;
+//登录到sso认证中心验证
 function dologin(){
 	var code = $('input[name="code"]').val();
-	var pwd = $('input[name="pwd"]').val();
-	$.post("system/doLogin.do",{code:code,pwd:pwd},function(res){
+	var pwd = $('input[name="password"]').val();
+	 $.post("http://localhost:8080/sso/systemSSo/sign.do",{code:code,password:pwd},function(res){
 		debugger;
-	},"POST")
+		if(res){
+			location.href="http://localhost:8080/webapp/mapper/go.do";
+		}
+	})  
 	
 }
 </script>

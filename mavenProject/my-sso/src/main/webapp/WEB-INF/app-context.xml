@@ -11,9 +11,11 @@
       http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
 	<context:property-placeholder
-		location="classpath:config/jdbc.properties" />
+		location="classpath:config/jdbc.properties,classpath:config/redis.properties" />
+	
 
 	<import resource="classpath:config/spring-ehcache.xml" />
+	<import resource="classpath:config/spring-redis.xml" />
 
 	<context:annotation-config />
 	<context:component-scan
@@ -122,6 +124,15 @@
 	<mvc:resources
 		location="classpath:/META-INF/resources/webjars/"
 		mapping="/webjars/**" />
+		
+	<!--配置拦截器 -->
+<!-- 	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/systemSSo/sign.do" />
+			<bean class=" com.mycompany.app.common.Intercept" />
+		</mvc:interceptor>
+	</mvc:interceptors> -->
+		
 
 </beans>
  

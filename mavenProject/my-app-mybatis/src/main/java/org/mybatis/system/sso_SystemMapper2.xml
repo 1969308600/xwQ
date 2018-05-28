@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.mybatis.system.SystemMapperI">
+
+	<select id="getUserByNameAndCode" resultType="org.mybatis.system.SystemUser">
+		select * from t_sys_user where password=#{password} and code = #{code} limit 1;
+	</select>
+	
+	<insert id="setUserSessionId">
+		update   t_sys_user set safeKey=#{sessionId} where id =#{userId};
+	</insert>
+
+</mapper>

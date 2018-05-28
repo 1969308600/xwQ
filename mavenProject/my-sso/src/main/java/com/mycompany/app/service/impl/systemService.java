@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.mybatis.system.SystemMapper;
+import org.mybatis.system.SystemUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
@@ -31,8 +32,8 @@ public class systemService implements SystemBaseServiceI<SystemMapper>{
 		return sqlSessionTemplate.selectList("getDept");
 	}
 	
-	public List<Object> getUserByNameAndCode(){
-		return sqlSessionTemplate.selectList("getUserByNameAndCode");
+	public  Object getUserByNameAndCode(SystemUser u){
+		return sqlSessionTemplate.selectOne("getUserByNameAndCode",u);
 	}
 	
  

@@ -23,7 +23,7 @@ import net.sf.json.JSONObject;
 
 @Controller
 @RequestMapping(path="/mapper")
-public class TestContr implements EnvironmentAware {
+public class AppMapperController implements EnvironmentAware {
 	
 	
 	@Resource (name="testService")
