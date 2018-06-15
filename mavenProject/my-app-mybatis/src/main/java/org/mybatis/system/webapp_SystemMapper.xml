@@ -34,4 +34,8 @@
 		select * from t_sys_dpt order by id asc,sort desc;
 	</select>
 
+
+	<select id="test2" resultMap="dept">
+		select * from t2;
+	</select>
 </mapper>

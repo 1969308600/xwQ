@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.mybatis.test.Mapper;
 import org.springframework.context.EnvironmentAware;
@@ -91,6 +92,15 @@ public class TestContr implements EnvironmentAware {
 		res.setNotes ("sss");
 		
 		return res;
+	}
+	
+	
+	//≤‚ ‘ ˝æ›‘¥2
+	@RequestMapping(value = "testDateSouece2.do")
+	@ResponseBody
+	public String testDateSouece2(HttpServletResponse resp) {
+		List<Object> count = testService.test2();
+		return JSONObject.fromObject(count).toString();
 	}
 	
 	

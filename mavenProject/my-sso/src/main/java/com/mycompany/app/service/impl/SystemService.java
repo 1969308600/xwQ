@@ -14,7 +14,7 @@ import com.mybatis.web.test.Page;
 import com.mycompany.app.service.SystemBaseServiceI;
 
 @Service("systemService")
-public class systemService implements SystemBaseServiceI<SystemMapper>{
+public class SystemService implements SystemBaseServiceI<SystemMapper>{
 	
 	@Autowired 
 	public SqlSessionTemplate sqlSessionTemplate;
@@ -44,7 +44,7 @@ public class systemService implements SystemBaseServiceI<SystemMapper>{
 	 */
 	@Transactional
 	public  Object setUserSessionIdByUser(SystemUser u){
-		return sqlSessionTemplate.selectOne("getUserByNameAndCode",u);
+		return sqlSessionTemplate.selectOne("setUserSessionId",u);
 	}
 	
  

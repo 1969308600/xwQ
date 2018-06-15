@@ -10,6 +10,7 @@ public class ResultInfo <T>{
 	
 	T objData;
 	
+	
 	String info;
 	
 	public ResultInfo(boolean boo,String info) {
@@ -56,12 +57,13 @@ public class ResultInfo <T>{
 		this.objData = objData;
 	}
 
-	public String getErrorInfo() {
+ 
+	 
+	public String getInfo() {
 		return info;
 	}
-
-	public void setErrorInfo(String errorInfo) {
-		this.info = errorInfo;
+	public void setInfo(String info) {
+		this.info = info;
 	}
 	
 	

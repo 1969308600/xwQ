@@ -25,12 +25,33 @@
 		base-package="com.mycompany.app.*"></context:component-scan>
 
 	<!-- spring-jdbc -->
-	<bean id="dataSource"
+	<bean id="dataSource1"
 		class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="${jdbc.driver}" />
 		<property name="url" value="${jdbc.url}" />
 		<property name="username" value="${jdbc.username}" />
 		<property name="password" value="${jdbc.password}" />
+	</bean>
+	
+	<bean id="dataSource2"
+		class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="${jdbc.driver2}" />
+		<property name="url" value="${jdbc.url2}" />
+		<property name="username" value="${jdbc.username2}" />
+		<property name="password" value="${jdbc.password2}" />
+	</bean>
+
+	<!-- 配置多数据源映射 -->
+	<bean id="dataSource" class="com.mycompany.app.common.ChooseDataSource" >
+	     <property name="targetDataSources">
+	         <map key-type="java.lang.String">
+	             <entry value-ref="dataSource1" key="dataSource1"></entry>
+	             <entry value-ref="dataSource2" key="dataSource2"></entry>
+	         </map>
+	     </property>
+	     <!-- 默认数据源 -->
+	     <property name="defaultTargetDataSource" ref="dataSource1" >
+	     </property>
 	</bean>
 
 	<!-- dataSource -->
@@ -137,7 +158,7 @@
 	</mvc:interceptors> -->
 	
 	<bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-	    <property name="dataSource" ref="dbcp"/>  <!-- dbcp是连接池组件（org.apache.commons.dbcp2.BasicDataSource）的bean -->
+	    <property name="dataSource" ref="dataSource"/>  <!-- dbcp是连接池组件（org.apache.commons.dbcp2.BasicDataSource）的bean -->
 	</bean>
   
 	<!-- 声明使用注解式事务 -->  

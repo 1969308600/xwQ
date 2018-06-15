@@ -50,4 +50,9 @@ public class TestService implements SystemBaseServiceI<Mapper>{
 		
 	}
 
+
+	public List<Object> test2() {
+		 return sqlSessionTemplate.selectList("test2");
+	}
+
 }

@@ -1,5 +1,6 @@
 package com.mycompany.app.common;
 
+import java.io.InputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +21,7 @@ import com.mycompany.app.entity.CacheEntity;
 public class CacheRedisCommon  implements Serializable{
 	
 	 
-	private static final long serialVersionUID = 1L;
+	private  static final long serialVersionUID = 1L;
 	
 	@Resource
 	RedisTemplate<String,CacheEntity> redisTemplate;
@@ -69,7 +70,8 @@ public class CacheRedisCommon  implements Serializable{
     public void delete(String key) {  
         List<String> list = new ArrayList<String>();  
         list.add(key);  
-        delete(list);  
+        delete(list);
+        
     }  
   
     /**

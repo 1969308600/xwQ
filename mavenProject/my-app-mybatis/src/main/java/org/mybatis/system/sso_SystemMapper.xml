@@ -12,5 +12,6 @@
 	<insert id="setUserSessionId">
 		update   t_sys_user set safeKey=#{safeKey} where id =#{id};
 	</insert>
-
+	
+	
 </mapper>

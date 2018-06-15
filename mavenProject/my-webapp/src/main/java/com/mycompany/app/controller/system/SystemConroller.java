@@ -21,6 +21,7 @@ public class SystemConroller {
 	
 	@Autowired
 	systemService systems ;
+
 	
 	@RequestMapping(value = "getMenu.do")
 	@ResponseBody
@@ -63,6 +64,7 @@ public class SystemConroller {
 		return count;
 	}
 	 
-	
+	 
+
 
 }

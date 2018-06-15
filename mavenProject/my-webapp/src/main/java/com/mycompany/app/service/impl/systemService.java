@@ -34,7 +34,7 @@ public class systemService implements SystemBaseServiceI<SystemMapper>{
 	public List<Object> getUserByNameAndCode(){
 		return sqlSessionTemplate.selectList("getUserByNameAndCode");
 	}
-	
+ 
  
 	public int getMenuCountForList() {
 		return  sqlSessionTemplate.selectOne("getMenuCountForList");
