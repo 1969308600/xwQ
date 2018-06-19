@@ -99,7 +99,7 @@ public class TestContr implements EnvironmentAware {
 	@RequestMapping(value = "testDateSouece2.do")
 	@ResponseBody
 	public String testDateSouece2(HttpServletResponse resp) {
-		List<Object> count = testService.test2();
+		 Object  count = testService.test2();
 		return JSONObject.fromObject(count).toString();
 	}
 	

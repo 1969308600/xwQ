@@ -51,8 +51,12 @@ public class TestService implements SystemBaseServiceI<Mapper>{
 	}
 
 
+	@Override
 	public List<Object> test2() {
 		 return sqlSessionTemplate.selectList("test2");
 	}
+
+
+	 
 
 }

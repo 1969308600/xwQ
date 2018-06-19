@@ -78,4 +78,9 @@ public class SystemService implements SystemBaseServiceI<SystemMapper>{
 		
 	}
 
+	@Override
+	public List<Object> test2() {
+		 return sqlSessionTemplate.selectList("test2");
+	}
+
 }

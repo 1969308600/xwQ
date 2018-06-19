@@ -12,8 +12,8 @@
 	http://www.springframework.org/schema/aop/spring-aop.xsd">  
    
    <!-- 估计用到了aop或者代理来实现  ehcache   aspectjweaver。jar还有包 -->
-   <aop:config proxy-target-class="true" /> 
-   
+ <!--   <aop:config proxy-target-class="true" />  -->
+   <aop:aspectj-autoproxy proxy-target-class="true"/>
    
    <!-- spring 注解缓存开启 -->
     <cache:annotation-driven cache-manager="cacheManager" />  

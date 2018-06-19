@@ -7,14 +7,19 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
-
+import org.springframework.stereotype.Component;
+@Component 
 @Aspect
 public class DataSourceAspect {
-	@Pointcut("execution(* com.mycompany.app..*.service.*.*(..))")
+	@Pointcut(value="execution(* com.mycompany.app.service..*.*(..))")
     public void pointCut() {
     };
     
-    @Before(value = "pointCut")
+    /**
+     * 通过反射获取 数据源 注解  提前预设数据库
+     * @param point
+     */
+    @Before(value = "pointCut()")
     public void before(JoinPoint point) {
         Object target = point.getTarget();
         System.out.println(target.toString());
