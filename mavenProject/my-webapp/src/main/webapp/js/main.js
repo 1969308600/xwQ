@@ -7,14 +7,16 @@ require.config({
 		
 		//对于用的多的可以提前引进   echart这种按需加载就行了。
 		"layui" : "lay/test/design/layui",    
-		"jquery" : "jquery/jquery-3.3.1",
-		"app":"app"
+		"jquery" : "jquery/jquery-3.3.1", 
+		"app":"app",
+		"ajaxStep":"ajaxStep"
+			
 
 	},
 	shim : {
 		'angularAMD' : [ 'angular' ],
 		'angular-route' : [ 'angular' ]
 	} ,
-	deps : ['app']//启动应用  
+	deps : ['app','ajaxStep']//启动应用  
 });
  

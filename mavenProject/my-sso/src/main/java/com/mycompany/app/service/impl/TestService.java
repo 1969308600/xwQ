@@ -3,6 +3,7 @@ package com.mycompany.app.service.impl;
 import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
+import org.mybatis.system.SystemUser;
 import org.mybatis.test.Mapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
@@ -52,10 +53,30 @@ public class TestService implements SystemBaseServiceI<Mapper>{
 
 
 	@Override
-	public List<Object> test2() {
+	public Object test2() {
 		 return sqlSessionTemplate.selectList("test2");
 	}
 
+
+ 
+
+
+	@Override
+	public Object getUserByNameAndCode(SystemUser u) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
+	@Override
+	public Object setUserSessionIdByUser(SystemUser t) {
+		return null;
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	 
 
 	 
 

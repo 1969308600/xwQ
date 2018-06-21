@@ -7,7 +7,7 @@
  * @returns
  */
 
-define([ 'angularAMD', 'angular-route', 'angular', 'jquery', 'systemConfigs',
+define([ 'angularAMD', 'angular-route', 'angular', 'jquery', 'systemConfigs', 
 		'layui' ], function(angularAMD) {
 	var app = angular.module('app', [ 'ui.router' ]);
 

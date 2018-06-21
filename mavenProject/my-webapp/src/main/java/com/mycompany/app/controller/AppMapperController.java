@@ -28,7 +28,7 @@ public class AppMapperController implements EnvironmentAware {
 	
 	@Resource (name="testService")
 	TestService testService;
-	@RequestMapping("testJson.do")
+	@RequestMapping(value="testJson.do")
 	@ResponseBody
 	public String testJson( Page pages,HttpServletRequest s) {
 		List<Object> o = testService.getMappertListByPage(pages,JSONObject.fromObject(pages).toString());
@@ -38,7 +38,7 @@ public class AppMapperController implements EnvironmentAware {
 		return  JSONObject.fromObject(lu).toString() ;
 	}
 	  
-	@RequestMapping("save.do")
+	@RequestMapping(value="save.do")
 	@ResponseBody
 	public String save( Mapper mapper,HttpServletRequest s) {
 		 try {
@@ -50,9 +50,10 @@ public class AppMapperController implements EnvironmentAware {
       
 	}
 	
-	@RequestMapping("go.do")
+	@RequestMapping(value="go.do")
 	public String test( Model m,ModelAndView mv,HttpServletRequest request ) {
-		m.addAttribute("name","test"); 
+		m.addAttribute("name","test");
+		request.getSession().setAttribute("token", request.getParameter("token"));
 		return "/go";
 	}
 	Environment local;

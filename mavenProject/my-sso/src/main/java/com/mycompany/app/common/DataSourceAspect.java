@@ -16,7 +16,7 @@ public class DataSourceAspect {
     };
     
     /**
-     * Í¨¹ı·´Éä»ñÈ¡ Êı¾İÔ´ ×¢½â  ÌáÇ°Ô¤ÉèÊı¾İ¿â
+     * Í¨æ•°æ®æº æ³¨è§£  åˆ‡æ¢  åå°„
      * @param point
      */
     @Before(value = "pointCut()")
@@ -29,8 +29,8 @@ public class DataSourceAspect {
         Class<?>[] parameterTypes = ((MethodSignature) point.getSignature()).getMethod().getParameterTypes();
         try {
             Method m = classz[0].getMethod(method, parameterTypes);
-            System.out.println(m.getName());
             if (m != null && m.isAnnotationPresent(DataSourcer.class)) {
+            	System.out.println(m.getName());
                 DataSourcer data = m.getAnnotation(DataSourcer.class);
                 HandleDataSource.putDataSource(data.value());
             }

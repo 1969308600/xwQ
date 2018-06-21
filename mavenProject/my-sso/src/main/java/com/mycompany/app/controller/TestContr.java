@@ -28,7 +28,7 @@ import io.swagger.annotations.ApiOperation;
 import net.sf.json.JSONObject;
 @Controller
 @RequestMapping(path="/mapper")
-@Api(tags="¸öÈËÒµÎñ")
+@Api(tags="æµ‹è¯•")
 public class TestContr implements EnvironmentAware {
 	
 	
@@ -71,9 +71,9 @@ public class TestContr implements EnvironmentAware {
 	
 	@RequestMapping(value="testApi.do",method=RequestMethod.POST)
 	@ResponseBody
-	 @ApiOperation(value = "»ñÈ¡ÓÃ»§ÁÐ±í1", notes = "2")  
-	 @ApiImplicitParam(name = "userid", value = "ÓÃ»§ID", required = true, dataType = "String")  
-	//@ApiOperation(value="¸ù¾ÝID»ñÈ¡ÓÃ»§ÐÅÏ¢",httpMethod="POST",notes="get user by id",response=ApiResult.class) 
+	 @ApiOperation(value = "ï¿½ï¿½È¡ï¿½Ã»ï¿½ï¿½Ð±ï¿½1", notes = "2")  
+	 @ApiImplicitParam(name = "userid", value = "ï¿½Ã»ï¿½ID", required = true, dataType = "String")  
+	//@ApiOperation(value="ï¿½ï¿½ï¿½ï¿½IDï¿½ï¿½È¡ï¿½Ã»ï¿½ï¿½ï¿½Ï¢",httpMethod="POST",notes="get user by id",response=ApiResult.class) 
 	public ApiResult testApi(String userid) {
 		ApiResult res = new ApiResult();
 		res.setCode("100");
@@ -95,7 +95,7 @@ public class TestContr implements EnvironmentAware {
 	}
 	
 	
-	//²âÊÔÊý¾ÝÔ´2
+	//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ô´2    ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý¿ï¿½å´»ï¿½   ï¿½ï¿½Òªï¿½Ý´ï¿½ï¿½
 	@RequestMapping(value = "testDateSouece2.do")
 	@ResponseBody
 	public String testDateSouece2(HttpServletResponse resp) {

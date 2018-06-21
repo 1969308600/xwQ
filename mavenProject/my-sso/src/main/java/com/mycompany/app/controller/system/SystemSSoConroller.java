@@ -1,13 +1,16 @@
 package com.mycompany.app.controller.system;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.mybatis.system.SystemUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -21,7 +24,7 @@ import net.sf.json.JSONObject;
 
 @Controller
 @RequestMapping(path="systemSSo")
-@Api(tags="ÏµÍ³¿ØÖÆÆ÷")
+@Api(tags="ç³»ç»Ÿæ§åˆ¶å™¨")
 public class SystemSSoConroller {
 	
 	@Autowired
@@ -30,30 +33,30 @@ public class SystemSSoConroller {
 	CacheRedis cacheRedis ;
 	
 	
-	//µÇÂ¼
-	@RequestMapping(value = "doLogin.do",method=RequestMethod.POST,name="µÇÂ¼")
+	//ç™»å½•
+	@RequestMapping(value = "doLogin.do",method=RequestMethod.POST,name="ç™»å½•")
 	@ResponseBody
 	public String doLogin(SystemUser user,HttpServletResponse resp) {
 		return "";
 	}
 	
-	//ssoÑéÖ¤
+	//ssoéªŒè¯
 	@SuppressWarnings("rawtypes")
-	@RequestMapping(value = "sign.do",method=RequestMethod.POST,name="ÑéÖ¤")
+	@RequestMapping(value = "sign.do",method=RequestMethod.POST,name="éªŒè¯",consumes="application/json;charset=utf-8")
 	@ResponseBody
-	public ResultInfo sign(SystemUser user,HttpServletResponse resp,HttpSession session) {
+	public ResultInfo sign(@RequestBody SystemUser user,HttpServletRequest req,HttpServletResponse resp,HttpSession session) {
 		
 		SystemUser selectUser = (SystemUser) systems.getUserByNameAndCode(user);
-	 	if(null!=session.getId() &&session.getId()==selectUser.getSafeKey()){
-			return new ResultInfo<>(true, new String(session.getId()));
-		}
 		if(null!=selectUser) {
+		 	if(null!=session.getId() &&session.getId().equals(selectUser.getSafeKey())){
+				return new ResultInfo<>(true, new String(session.getId()));
+			}
 			boolean boo = cacheRedis.add(new CacheEntity(session.getId()
-					, JSONObject.fromObject(user).toString()));	//¹²Ïíµ½redis  È±·¦¼ÓÃÜ»úÖÆ  £¬sha-1»òÕßmd5£¬Ê¹ÓÃ+appidµÄ·½Ê½°²È«ĞÔ»á¸ú¸ßĞ©
+					, JSONObject.fromObject(user).toString()));	//å…±äº«åˆ°redis  ç¼ºä¹åŠ å¯†æœºåˆ¶  ï¼Œsha-1æˆ–è€…md5ï¼Œä½¿ç”¨+appidçš„æ–¹å¼å®‰å…¨æ€§ä¼šè·Ÿé«˜äº›
 			
 			cacheRedis.keyTimeOut(session.getId(), 3600);
 			
-			if(boo) {//session ¹²Ïí   ±£´æµ½Êı¾İ¿â
+			if(boo) {//session å…±äº«   ä¿å­˜åˆ°æ•°æ®åº“
 				selectUser.setSafeKey(session.getId());
 				systems.setUserSessionIdByUser(selectUser);
 				
@@ -64,7 +67,7 @@ public class SystemSSoConroller {
 	
 //		
 	}
-	@RequestMapping(value = "test.do",method=RequestMethod.GET,name="²âÊÔ")
+	@RequestMapping(value = "test.do",method=RequestMethod.GET,name="æµ‹è¯•")
 	public ModelAndView test(SystemUser user,HttpServletResponse resp,HttpSession session) {
 		ModelAndView mv= new ModelAndView("redirect:http://localhost:8080/webapp/ftl/login.html");
 		return mv;

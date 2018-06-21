@@ -28,17 +28,18 @@ public class InterceptCommon implements HandlerInterceptor {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		
-		String token = request.getParameter("token");//令牌  实际上是要验签加密的，这里直接用的session
-		
-		if(null==token||null==redisCommon.get(token)) {
-			request.getRequestDispatcher("/mapper/login.html").forward(request, response);
-			// sso帮忙跳转不了，使用post或者ajax是没法让springmvc给你返回视图
-			return false;
-		}else {
-			
-			return HandlerInterceptor.super.preHandle(request, response, handler);
-			
-		}
+//		String token = request.getParameter("token");//令牌  实际上是要验签加密的，这里直接用的session
+//		
+//		if(null==token||null==redisCommon.get(token)) {
+//			request.getRequestDispatcher("/mapper/login.html").forward(request, response);
+//			// sso帮忙跳转不了，使用post或者ajax是没法让springmvc给你返回视图
+//			return false;
+//		}else {
+//			
+//			return HandlerInterceptor.super.preHandle(request, response, handler);
+//			
+//		}
+		return HandlerInterceptor.super.preHandle(request, response, handler);
 	}
 
 }

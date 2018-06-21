@@ -38,7 +38,7 @@ public class SystemService implements SystemBaseServiceI<SystemMapper>{
 	}
 	
 	/**
-	 * ¹²ÏísessionId
+	 * ï¿½ï¿½ï¿½ï¿½sessionId
 	 * @param u
 	 * @return
 	 */
@@ -81,6 +81,14 @@ public class SystemService implements SystemBaseServiceI<SystemMapper>{
 	@Override
 	public List<Object> test2() {
 		 return sqlSessionTemplate.selectList("test2");
+	}
+
+ 
+
+
+	public void setUserSessionIdByUser(SystemMapper t) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
