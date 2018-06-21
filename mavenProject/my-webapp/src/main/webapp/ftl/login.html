@@ -93,11 +93,11 @@ function dologin(){
 		  type: "POST",
 		  dataType: "json" ,
 		  data:postData,
-		  contentType: 'application/json;charset=utf-8',
+		 // contentType: 'application/json;charset=utf-8',
 		  success:function(res){
 		      if(res.success){
 		    	  console.log(res.info);
-				 location.href="http://localhost:8080/webapp/mapper/go.do?token="+res.info;
+				 location.href="http://localhost:8080/webapp/mapper/go.do?token="+res.info; /* 传入sso中心的令牌  */
 			  }else{
 				 alert("无此账号！你可以试试注册！");
 			  }

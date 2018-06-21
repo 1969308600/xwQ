@@ -41,15 +41,11 @@ public class LoginFilter implements Filter{
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		HttpServletRequest req = (HttpServletRequest)request;
-         HttpServletResponse resp =(HttpServletResponse) response;
+        HttpServletResponse resp =(HttpServletResponse) response;
         HttpSession session = req.getSession(); 
         
-        System.out.println(session.getId());
+        Object token = session.getAttribute("token");//sso中心的令牌
         
-    	String token =session.getAttribute("token").toString();//令牌  实际上是要验签加密的，这里直接用的session
-    	if(null==token) 
-    		token=session.getId();
-    	 
     	if(null==redisCommon) {//只需注入一次
     		//filter 中无法注入bean哇。
     		ServletContext sc = req.getSession().getServletContext();
@@ -58,18 +54,18 @@ public class LoginFilter implements Filter{
     			redisCommon = (CacheRedisCommon) cxt.getBean("cacheRedisCommon");
     		}
     	} 
-    	
-    	if(null==token||redisCommon==null||null==redisCommon.get(token)) {
+    	if(null==token||redisCommon==null||null==redisCommon.get(token.toString())) {
+    		
     		 String requestType = req.getHeader("X-Requested-With");//识别ajax的响应头   
     		 if (requestType != null && requestType.equals("XMLHttpRequest")) {//如果是ajax类型，
-    			 PrintWriter out = resp.getWriter();
+    			 PrintWriter out = resp.getWriter();//线程不安全，除非你定义threadlocal变量。
     			 resp.setStatus(900);
-    			 out.write("登录无效！"); 
+    			 out.write("无效登录！"); 
              }else{   
                  request.getRequestDispatcher("/ftl/login.html").forward(request, response);
              }  
     	}else {
-    		if(null!=redisCommon.get(token).getValue())//不等于null 说明已经缓存，无须做其他判断
+    		if(null!=redisCommon.get(token.toString()))//不等于null 说明已经缓存，无须做其他判断
     			chain.doFilter(request, response);
     	}
         

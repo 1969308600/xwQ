@@ -17,6 +17,6 @@ require.config({
 		'angularAMD' : [ 'angular' ],
 		'angular-route' : [ 'angular' ]
 	} ,
-	deps : ['app','ajaxStep']//启动应用  
+	deps : ['app','ajaxStep']//调用 
 });
  

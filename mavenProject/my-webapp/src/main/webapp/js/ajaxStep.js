@@ -8,6 +8,11 @@ define(['jquery'], function() {
 	    		alert(XMLHttpRequest.responseText);
 	    		window.location.replace("http://localhost:8080/webapp/ftl/login.html");
 	    	}
+	    	 if (XMLHttpRequest.status == 401) {//多余的
+	             alert('您好，身份验证已过期，请重新登陆。');
+	             //返回首页
+	             window.location.href = 'http://localhost:8080/webapp/ftl/login.html';
+	         }
 	    }
 	});	
 });
