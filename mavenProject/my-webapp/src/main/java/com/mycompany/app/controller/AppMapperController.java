@@ -4,7 +4,9 @@ package com.mycompany.app.controller;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.mybatis.test.Mapper;
 import org.springframework.context.EnvironmentAware;
@@ -51,9 +53,9 @@ public class AppMapperController implements EnvironmentAware {
 	}
 	
 	@RequestMapping(value="go.do")
-	public String test( Model m,ModelAndView mv,HttpServletRequest request ) {
-		m.addAttribute("name","test");
-		request.getSession().setAttribute("token", request.getParameter("token"));
+	public String test( Model m,ModelAndView mv,HttpServletRequest request,HttpServletResponse resp ) {
+		System.out.println("2");
+		m.addAttribute("name","test"); 
 		return "/go";
 	}
 	Environment local;

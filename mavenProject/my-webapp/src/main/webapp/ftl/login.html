@@ -76,19 +76,32 @@
 $.ajaxSetup({
     contentType : "application/json;charset=utf-8",
     complete : function(XMLHttpRequest, textStatus) {
-    	debugger
     	if(XMLHttpRequest.status==900){
     		alert(XMLHttpRequest.responseText);
-    		window.location.replace("http://localhost:8080/webapp/ftl/login.html");
+    			window.location.replace("http://localhost:8080/webapp/ftl/login.html");
     	}
     }
 });	
+function setCookie(c_name, value, expiredays){
+　　　　var exdate=new Date();
+　　　exdate.setDate(exdate.getDate() + expiredays);
+　　　document.cookie=c_name+ "=" + escape(value) 
+                     + ((expiredays==null) ? "" : ";expires="+exdate.toGMTString())+";path="+escape("/")+";max-age="+escape("360");
+                    /*  
+                     ;path=path (例如 '/', '/mydir') 如果没有定义，默认为当前文档位置的路径。
+                     ;domain=domain (例如 'example.com'， '.example.com' (包括所有子域名), 'subdomain.example.com') 如果没有定义，默认为当前文档位置的路径的域名部分。
+                     ;max-age=max-age-in-seconds (例如一年为60*60*24*365)
+                     ;expires=date-in-GMTString-format 如果没有定义，cookie会在对话结束时过期  这个值的格式参见Date.toUTCString() 
+                     ;secure (cookie只通过https协议传输) 
+                     */
+}
 //登录到sso认证中心验证
 function dologin(){
 	var coder = $('input[name="code"]').val();
 	var pwd = $('input[name="password"]').val();
 	var postData = JSON.stringify({code:coder,password:pwd});
 	$.ajax({
+		 
 		  url: "http://localhost:8080/sso/systemSSo/sign.do",
 		  type: "POST",
 		  dataType: "json" ,
@@ -96,8 +109,10 @@ function dologin(){
 		 // contentType: 'application/json;charset=utf-8',
 		  success:function(res){
 		      if(res.success){
-		    	  console.log(res.info);
-				 location.href="http://localhost:8080/webapp/mapper/go.do?token="+res.info; /* 传入sso中心的令牌  */
+		    	 setCookie("token",res.info,1);
+		    	 setTimeout(function(){//为什么这个狗东西要设置时间才会出来。。
+				 	location.href = "http://localhost:8080/webapp/mapper/go.do";
+		    	 },20);
 			  }else{
 				 alert("无此账号！你可以试试注册！");
 			  }

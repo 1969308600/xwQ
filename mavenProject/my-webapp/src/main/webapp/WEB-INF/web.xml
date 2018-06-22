@@ -78,5 +78,10 @@
 	    <url-pattern>*.do</url-pattern>  
 	</filter-mapping>
 	
-	
+	<session-config>  
+   		<session-timeout>5</session-timeout>  
+	</session-config>  
+	   <listener>  
+		<listener-class>com.mycompany.app.common.SessionListener</listener-class>  
+	</listener>	
  </web-app>
