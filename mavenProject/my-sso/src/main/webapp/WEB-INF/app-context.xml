@@ -31,6 +31,16 @@
 		<property name="url" value="${jdbc.url}" />
 		<property name="username" value="${jdbc.username}" />
 		<property name="password" value="${jdbc.password}" />
+		<property name="timeBetweenEvictionRunsMillis" value="30000000" />
+		<property name="minEvictableIdleTimeMillis" value="1000000" />
+		<property name="minIdle" value="3" />
+		<property name="initialSize" value="1" />
+		<property name="validationQuery" value="SELECT 1" />
+		<property name="testWhileIdle" value="true" />
+		<!--  借出时不执行validationQuery -->
+		<property name="testOnBorrow" value="false" />
+		<property name="maxIdle" value="100" />
+		<property name="maxActive" value="130" />
 	</bean>
 	
 	<bean id="dataSource2"
@@ -39,6 +49,16 @@
 		<property name="url" value="${jdbc.url2}" />
 		<property name="username" value="${jdbc.username2}" />
 		<property name="password" value="${jdbc.password2}" />
+		<property name="timeBetweenEvictionRunsMillis" value="30000000" />
+		<property name="minEvictableIdleTimeMillis" value="1000000" />
+		<property name="minIdle" value="3" />
+		<property name="initialSize" value="1" />
+		<property name="validationQuery" value="SELECT 1" />
+		<property name="testWhileIdle" value="true" />
+		<!--  借出时不执行validationQuery -->
+		<property name="testOnBorrow" value="false" />
+		<property name="maxIdle" value="100" />
+		<property name="maxActive" value="130" />
 	</bean>
 
 	<!-- 配置多数据源映射 -->

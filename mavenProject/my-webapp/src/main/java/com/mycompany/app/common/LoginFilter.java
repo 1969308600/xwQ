@@ -47,8 +47,6 @@ public class LoginFilter implements Filter{
         HttpSession session = req.getSession(); 
         Object token = session.getAttribute(SomeStatic.TOKEN);//默认使用请求进来的token，这里缺乏加密机制
         
-        System.out.println("1");
-        
         Cookie[] cookies = req.getCookies();//令牌放在cookie里的 ，直接去cookie拿，这里缺乏加密机制
         if (null!=cookies) {
             for(Cookie cookie : cookies){
@@ -66,7 +64,6 @@ public class LoginFilter implements Filter{
     		}
     	} 
     	if(null==token||redisCommon==null||null==redisCommon.get(token.toString())) {
-    		 System.out.println("11");
     		 String requestType = req.getHeader("X-Requested-With");//识别ajax的响应头   
     		 if (requestType != null && requestType.equals("XMLHttpRequest")) {//如果是ajax类型，
     			 PrintWriter out = resp.getWriter();//线程不安全，除非你定义threadlocal变量。
@@ -76,7 +73,6 @@ public class LoginFilter implements Filter{
                  request.getRequestDispatcher(SomeStatic.LOGINHTML).forward(request, response);
              }  
     	}else {
-    		 System.out.println("111");
     		if(null!=redisCommon.get(token.toString()))//不等于null 说明已经缓存，无须做其他判断
     			chain.doFilter(request, response);
     	}

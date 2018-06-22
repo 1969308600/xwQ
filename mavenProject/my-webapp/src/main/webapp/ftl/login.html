@@ -101,7 +101,7 @@ function dologin(){
 	var pwd = $('input[name="password"]').val();
 	var postData = JSON.stringify({code:coder,password:pwd});
 	$.ajax({
-		 
+		  async: false,
 		  url: "http://localhost:8080/sso/systemSSo/sign.do",
 		  type: "POST",
 		  dataType: "json" ,

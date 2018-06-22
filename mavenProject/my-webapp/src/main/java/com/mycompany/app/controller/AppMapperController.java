@@ -54,7 +54,6 @@ public class AppMapperController implements EnvironmentAware {
 	
 	@RequestMapping(value="go.do")
 	public String test( Model m,ModelAndView mv,HttpServletRequest request,HttpServletResponse resp ) {
-		System.out.println("2");
 		m.addAttribute("name","test"); 
 		return "/go";
 	}
