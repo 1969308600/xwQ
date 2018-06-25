@@ -3,8 +3,6 @@ define(['jquery'], function() {
 	$.ajaxSetup({
 	    contentType : "application/json;charset=utf-8",
 	    complete : function(XMLHttpRequest, textStatus) {
-	    	debugger
-	    	console.log(3)
 	    	if(XMLHttpRequest.status==900){
 	    		alert(XMLHttpRequest.responseText);
 	    		window.location.replace("http://localhost:8080/webapp/ftl/login.html");

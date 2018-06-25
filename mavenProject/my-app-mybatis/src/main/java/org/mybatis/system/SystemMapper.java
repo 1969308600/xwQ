@@ -16,8 +16,15 @@ public class SystemMapper       {
 	int level;
 	int parent;
 	String key; 
+	String icon;
 	
 	
+	public String getIcon() {
+		return icon;
+	}
+	public void setIcon(String icon) {
+		this.icon = icon;
+	}
 	public String getCtrlKey() {
 		return ctrlKey;
 	}

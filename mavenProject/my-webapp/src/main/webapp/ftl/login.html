@@ -79,7 +79,9 @@ $.ajaxSetup({
     	if(XMLHttpRequest.status==900){
     		alert(XMLHttpRequest.responseText);
     			window.location.replace("http://localhost:8080/webapp/ftl/login.html");
+    			//window.location.reload()
     	}
+    	window.location.reload()
     }
 });	
 function setCookie(c_name, value, expiredays){
@@ -101,18 +103,15 @@ function dologin(){
 	var pwd = $('input[name="password"]').val();
 	var postData = JSON.stringify({code:coder,password:pwd});
 	$.ajax({
-		  async: false,
 		  url: "http://localhost:8080/sso/systemSSo/sign.do",
 		  type: "POST",
 		  dataType: "json" ,
 		  data:postData,
-		 // contentType: 'application/json;charset=utf-8',
+		 // contentType: 'application/json;charset=utf-8', //设置在ajaxStep里
 		  success:function(res){
 		      if(res.success){
 		    	 setCookie("token",res.info,1);
-		    	 setTimeout(function(){//为什么这个狗东西要设置时间才会出来。。
 				 	location.href = "http://localhost:8080/webapp/mapper/go.do";
-		    	 },20);
 			  }else{
 				 alert("无此账号！你可以试试注册！");
 			  }

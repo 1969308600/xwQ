@@ -1,16 +1,18 @@
 package com.test.readwritelock;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.TimerTask;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorCompletionService;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
 import java.util.concurrent.locks.ReentrantLock;
 
-public class ThreadTest  extends Thread  {
+  class ThreadTest2  extends Thread  {
 	ReadWriteLocktest e = new ReadWriteLocktest();
 	testEntity ent = null;
 	int index =0;
@@ -18,7 +20,7 @@ public class ThreadTest  extends Thread  {
 	syc syc;
 	testEntity te;
 	Map<Integer , testEntity> map = new ConcurrentHashMap<Integer , testEntity>();
-	public  ThreadTest( int index,int v,testEntity e) {
+	public  ThreadTest2( int index,int v,testEntity e) {
 		
 		ent=e;
 		this.index=index;
@@ -29,7 +31,7 @@ public class ThreadTest  extends Thread  {
 		}
 		
 	}
-	public ThreadTest( syc e) {
+	public ThreadTest2( syc e) {
 		this.syc=e;
 	}
 	public void run( ) {
@@ -84,11 +86,11 @@ class TestCallAble implements Callable<String>{
 		 Future<String> test1=	sd.submit(new TestCallAble2());
 		 Future<String> test2=	sd.submit(new TestCallAble2());
 		
-		 System.out.println(test1.get()+"    "+test2.get());
+		// System.out.println(test1.get()+"    "+test2.get());
 		sd.shutdown();
 		
-		System.out.println(tt);
-		return "123"+tt;
+		//System.out.println(tt);
+		return "测试数据";
 	}
 }
 /**
@@ -154,12 +156,12 @@ class testadd implements Runnable{
 	}
 }
 
-class Test {
+public class ThreadTest {
 	public static void main(String[] args) throws InterruptedException, ExecutionException {
-		testadd t= new testadd();
-		 for(int i=0;i<10;i++) {
-			 new Thread(t).start();
-		 }
+//		testadd t= new testadd();
+//		 for(int i=0;i<10;i++) {
+//			 new Thread(t).start();
+//		 }
 		
 		//ThreadPoolExecutor expool = new ThreadPoolExecutor(100, 200, 10, TimeUnit.MICROSECONDS,  new LinkedBlockingQueue());
 		                                                                   
@@ -173,7 +175,7 @@ class Test {
 //			t2.start();
 //			t.start();
 			
-		//	ExecutorService ex = Executors.newFixedThreadPool(100);
+			ExecutorService ex = Executors.newFixedThreadPool(100);
  			 
 //			ExecutorService sd  = Executors.newSingleThreadExecutor();
 //			
@@ -190,19 +192,34 @@ class Test {
 			//String callback = ss.get();
 			
 			//
-//			ExecutorCompletionService<String> exc = new ExecutorCompletionService<>(ex);
-//			
-//			for(int i=0;i<100;i++) {//假设每个线程所花时间都是十几秒这样子的  而且不知道有多少这种任务
-//				exc.submit(new TestCallAble());
-//			}
-//			
-//			for(int i=0;i<100;i++) {//依次从队列中拿到完成的任务返回值
-//				Future<String> ss= exc.take();
-//				ss.cancel(true);
-////				System.out.println(ss.get());
-//			}
+			ExecutorCompletionService<String> exc = new ExecutorCompletionService<>(ex);
 			
-			//ex.shutdown();
+			for(int i=0;i<100;i++) {//假设每个线程所花时间都是十几秒这样子的  而且不知道有多少这种任务
+				exc.submit(new TestCallAble());
+				System.out.println("任务"+i);
+			}
+			Map<String,Object> map = new HashMap<String,Object>();
+			for(int i=0;i<100;i++) {//依次从队列中拿到完成的任务返回值
+				Future<String> ss= exc.take();
+				ss.cancel(true);
+				//System.out.println(ss.get());
+				map.put("key"+i, ss.get());
+			} 
+			
+			ex.shutdown();//结束接收任务
+			while(true) {
+				if(ex.isTerminated()) {
+					System.out.println("一百个任务完成！");
+					System.out.println("数据合流"+map.size());
+					System.out.println("数据合流5"+map.get("key5"));
+					System.out.println("数据合流55"+map.get("key55"));
+					System.out.println("数据合流95"+map.get("key95"));
+					break;
+					
+				}
+				 Thread.sleep(50);
+			}
+			
 		//	Timer timer = new Timer();
 		//	timer.schedule(new timertaskTest(), 1000,2000);
 //			System.out.println("end");

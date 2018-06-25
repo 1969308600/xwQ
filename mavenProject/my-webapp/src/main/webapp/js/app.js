@@ -53,14 +53,15 @@ define([ 'angularAMD', 'angular-route', 'angular', 'jquery', 'systemConfigs',
 						treeArr.push(v);
 					}
 				});
-				//$scope.layIds.push($scope.menus[0].id);
 				//设置 树
 				layui.use([ 'tree', 'element','form' ], function() {
+					debugger;
 					layui.tree({
 						elem : '#divForTree',// 传入元素选择器 
 						nodes : $scope.getTreeArr(treeArr, $scope.menus),
-						click : function(node) {
-							//设置 选项卡  切换
+						skin: 'shihuang',
+						click : function(node) {//点击菜单 
+							//点击菜单   设置 选项卡  切换
 							var $ = layui.jquery, element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
 							if ($.inArray(node.id, $scope.layIds) == -1&&node.urlKey) {
 								$scope.layIds.push(node.id);

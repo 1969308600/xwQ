@@ -48,8 +48,9 @@ layui.define('jquery', function(exports){
       var li = $(['<li '+ (item.spread ? 'data-spread="'+ item.spread +'"' : '') +'>'
         //展开箭头
         ,function(){
-          return hasChild ? '<i class="layui-icon layui-tree-spread">'+ (
+          return hasChild ? '<i class="layui-icon layui-tree-spread" style="float:right">'+ (
             item.spread ? icon.arrow[1] : icon.arrow[0]
+            
           ) +'</i>' : '';
         }()
         
@@ -70,9 +71,14 @@ layui.define('jquery', function(exports){
             options.target && item.href ? 'target=\"'+ options.target +'\"' : ''
           ) +'>'
           + ('<i class="layui-icon layui-tree-'+ (hasChild ? "branch" : "leaf") +'">'+ (
-            hasChild ? (
-              item.spread ? icon.branch[1] : icon.branch[0]
-            ) : icon.leaf
+//            hasChild ? (
+//              item.spread ? icon.branch[1] : icon.branch[0]
+//            ) : icon.leaf
+        	//自定义图标 
+    		item.icon?'<i class="layui-icon layui-tree-leaf">'+item.icon+'</i>':
+        		( 
+        			hasChild ? ( item.spread ? icon.branch[1] : icon.branch[0]  ) : icon.leaf
+ 	            )
           ) +'</i>') //节点图标
           + ('<cite>'+ (item.name||'未命名') +'</cite></a>');
         }()
@@ -119,12 +125,16 @@ layui.define('jquery', function(exports){
         elem.data('spread', null)
         ul.removeClass('layui-show');
         arrow.html(icon.arrow[0]);
-        a.find('.layui-icon').html(icon.branch[0]);
+       // arrow.html(item.icon?'<i class="layui-icon">'+item.icon+'</i>': ( icon.branch[0]));
+      //  a.find('.layui-icon').html(icon.branch[0]);
+        
+        
+       
       } else {
         elem.data('spread', true);
         ul.addClass('layui-show');
         arrow.html(icon.arrow[1]);
-        a.find('.layui-icon').html(icon.branch[1]);
+       // a.find('.layui-icon').html(icon.branch[1]);
       }
     };
     

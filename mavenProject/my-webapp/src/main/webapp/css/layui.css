@@ -151,8 +151,14 @@ a cite {
 @font-face {
 	font-family:layui-icon;
 	src:url(../font/iconfont.eot?v=226_rc2);
-	src:url(../font/iconfont.eot?v=226_rc2#iefix) format('embedded-opentype'),url(../font/iconfont.svg?v=226_rc2#iconfont) format('svg'),url(../font/iconfont.woff?v=226_rc2) format('woff'),url(../font/iconfont.ttf?v=226_rc2) format('truetype')
-}
+	src:url(../font/iconfont.eot?v=226_rc2#iefix) format('embedded-opentype')
+	,url(../font/iconfont.svg?v=226_rc2#iconfont) format('svg')
+	,url(../font/iconfont.woff?v=226_rc2) format('woff')
+	,url(../font/iconfont.ttf?v=226_rc2) format('truetype') 
+} 
+
+ 
+
 .layui-icon {
 	font-family:layui-icon!important;
 	font-size:16px;
@@ -2593,7 +2599,7 @@ body .layui-table-tips .layui-layer-content {
 	font-size:12px
 }
 .layui-tree {
-	line-height:26px
+	line-height:26px;
 }
 .layui-tree li {
 	text-overflow:ellipsis;

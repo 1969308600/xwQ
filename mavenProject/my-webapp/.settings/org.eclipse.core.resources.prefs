@@ -1,6 +1,9 @@
 eclipse.preferences.version=1
 encoding//src/main/java/com/mycompany/app/common/CacheRedisCommon.java=UTF-8
-encoding//src/main/webapp/font/iconfont.woff=UTF-8
+encoding//src/main/webapp/font/alibaba_icon/alibabaIcon.css=UTF-8
+encoding//src/main/webapp/font/alibaba_icon/iconfont.css=UTF-8
+encoding//src/main/webapp/font/test=UTF-8
+encoding//src/main/webapp/font/test/demo.css=UTF-8
 encoding//src/main/webapp/ftl/sys/dept.html=UTF-8
 encoding//src/main/webapp/ftl/sys/menu.html=UTF-8
 encoding//src/main/webapp/ftl/sys/user.html=UTF-8
