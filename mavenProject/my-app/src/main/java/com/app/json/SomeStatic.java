@@ -37,7 +37,7 @@ public class SomeStatic {
 	/**
 	 * loginҳurl
 	 */
-	public static String  LOGINHTML = "/ftl/login.html";
+	public static String  LOGINHTML = "/webapp/ftl/login.html";
 	
 	
 

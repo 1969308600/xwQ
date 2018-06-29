@@ -71,24 +71,25 @@
     <div class="site-demo-foot"><a href="http://www.miitbeian.gov.cn/">蜀ICP.laozibuxinxie</a></div>
 </div>
 <script type="text/javascript" src="../js/jquery/jquery-3.3.1.js"></script>
+<script type="text/javascript" src="../js/lay/test/design/layui.all.js"></script>
  
 <script type="text/javascript">
+  
 $.ajaxSetup({
     contentType : "application/json;charset=utf-8",
     complete : function(XMLHttpRequest, textStatus) {
     	if(XMLHttpRequest.status==900){
     		alert(XMLHttpRequest.responseText);
     			window.location.replace("http://localhost:8080/webapp/ftl/login.html");
-    			//window.location.reload()
-    	}
-    	window.location.reload()
-    }
+    	} 
+    	window.location.href = "http://localhost:8080/webapp/mapper/go.do";
+    } 
 });	
 function setCookie(c_name, value, expiredays){
-　　　　var exdate=new Date();
+　　　var exdate=new Date();
 　　　exdate.setDate(exdate.getDate() + expiredays);
 　　　document.cookie=c_name+ "=" + escape(value) 
-                     + ((expiredays==null) ? "" : ";expires="+exdate.toGMTString())+";path="+escape("/")+";max-age="+escape("360");
+                     + ((expiredays==null) ? "" : ";expires="+exdate.toGMTString())+";path="+escape("/")+";max-age="+escape("3600");
                     /*  
                      ;path=path (例如 '/', '/mydir') 如果没有定义，默认为当前文档位置的路径。
                      ;domain=domain (例如 'example.com'， '.example.com' (包括所有子域名), 'subdomain.example.com') 如果没有定义，默认为当前文档位置的路径的域名部分。
@@ -97,21 +98,24 @@ function setCookie(c_name, value, expiredays){
                      ;secure (cookie只通过https协议传输) 
                      */
 }
+
 //登录到sso认证中心验证
+var index = 1;
 function dologin(){
+	index = layer.msg('努力中...', {icon: 16,shade: [0.7, '#f5f5f5'],scrollbar: false,offset: '0px', time:100000}) ; 
 	var coder = $('input[name="code"]').val();
 	var pwd = $('input[name="password"]').val();
 	var postData = JSON.stringify({code:coder,password:pwd});
-	$.ajax({
+	$.ajax({   
 		  url: "http://localhost:8080/sso/systemSSo/sign.do",
 		  type: "POST",
 		  dataType: "json" ,
 		  data:postData,
-		 // contentType: 'application/json;charset=utf-8', //设置在ajaxStep里
 		  success:function(res){
+	    	  layer.close(index);//关闭
 		      if(res.success){
-		    	 setCookie("token",res.info,1);
-				 	location.href = "http://localhost:8080/webapp/mapper/go.do";
+		    	  setCookie("token",res.info,1);
+		    	
 			  }else{
 				 alert("无此账号！你可以试试注册！");
 			  }
@@ -119,9 +123,7 @@ function dologin(){
 		  error:function(r){
 			  alert(r.statusText+",code:"+r.status);
 		  }
-		});
-	 
-	
+	});
 }
 </script>
 </body></html>

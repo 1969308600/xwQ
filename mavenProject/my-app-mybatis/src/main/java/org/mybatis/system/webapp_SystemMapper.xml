@@ -38,4 +38,9 @@
 	<select id="test2" resultMap="dept">
 		select * from t2;
 	</select>
+	
+	
+	<select id="getUserList" resultType="org.mybatis.system.SystemUser" >
+		select * from t_sys_user limit #{page},#{limit};
+	</select>
 </mapper>

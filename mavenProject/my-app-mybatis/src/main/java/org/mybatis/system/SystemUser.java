@@ -7,6 +7,7 @@ public class SystemUser {
 	String code;
 	String loginName;
 	String phone;
+	String dptId;
 	String email;
 	String password;
 	public String getId() {
@@ -56,6 +57,12 @@ public class SystemUser {
 	}
 	public void setSafeKey(String safeKey) {
 		this.safeKey = safeKey;
+	}
+	public String getDptId() {
+		return dptId;
+	}
+	public void setDptId(String dptId) {
+		this.dptId = dptId;
 	}
 	 
 	

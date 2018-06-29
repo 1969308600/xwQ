@@ -2,12 +2,12 @@ package com.mybatis.web.test;
 
 import java.util.List;
 
-public class Layui {
+public class Layui<T> {
 	
 	 String count;
 	 String  code="";
 	 String msg=""  ; 
-	 List<Object> data;
+	 List<T> data;
 	public String getCount() {
 		return count;
 	}
@@ -26,10 +26,10 @@ public class Layui {
 	public void setMsg(String msg) {
 		this.msg = msg;
 	}
-	public  List<Object>  getData() {
+	public  List<T>  getData() {
 		return data;
 	}
-	public void setData( List<Object>  data) {
+	public void setData( List<T>  data) {
 		this.data = data;
 	}
 

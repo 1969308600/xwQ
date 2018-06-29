@@ -45,7 +45,7 @@ layui.define('jquery', function(exports){
     layui.each(nodes, function(index, item){
       var hasChild = item.children && item.children.length > 0;
       var ul = $('<ul class="'+ (item.spread ? "layui-show" : "") +'"></ul>');
-      var li = $(['<li '+ (item.spread ? 'data-spread="'+ item.spread +'"' : '') +'>'
+      var li = $(['<li style="padding:10px 0px 10px 0px" '+ (item.spread ? 'data-spread="'+ item.spread +'"' : '') +'>'
         //展开箭头
         ,function(){
           return hasChild ? '<i class="layui-icon layui-tree-spread" style="float:right">'+ (
@@ -70,7 +70,7 @@ layui.define('jquery', function(exports){
           return '<a href="'+ (item.href || 'javascript:;') +'" '+ (
             options.target && item.href ? 'target=\"'+ options.target +'\"' : ''
           ) +'>'
-          + ('<i class="layui-icon layui-tree-'+ (hasChild ? "branch" : "leaf") +'">'+ (
+          + ('<i style="padding:0px 7px 0px 0px" class="layui-icon layui-tree-'+ (hasChild ? "branch" : "leaf") +'">'+ (
 //            hasChild ? (
 //              item.spread ? icon.branch[1] : icon.branch[0]
 //            ) : icon.leaf

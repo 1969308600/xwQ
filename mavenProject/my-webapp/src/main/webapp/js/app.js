@@ -37,12 +37,16 @@ define([ 'angularAMD', 'angular-route', 'angular', 'jquery', 'systemConfigs',
 		}
 		
 		// 获取系统 菜单  设置选项卡
-		$scope.getSysTemMenu = function() {
+		$scope.getSysTemMenu = function(callback) {
 			 
 			$.post("/webapp/system/getMenu.do", {}, function(res) {// 预留角色参数，后期将以角色获取菜单。
 				// console.log("menus:"+res);
-				$scope.menus = JSON.parse(res).data;//如果静态资源保持高度一致  这句话就是多余的
-				$scope.$digest();
+				$scope.menus =  res.data;//如果静态资源保持高度一致  这句话就是多余的
+				
+				$scope.$digest();//对于$digest来说，在父作用域和子作用域上调用是有差别的，但是，对于$apply来说，这两者一样。$apply可以带参数，它可以接受一个函数，然后在应用数据之后，调用这个函数。
+				
+				callback();
+				
 				// 处理树的部分数据
 				var treeArr = [];
 				$scope.menus.forEach(function(v) {
@@ -55,7 +59,6 @@ define([ 'angularAMD', 'angular-route', 'angular', 'jquery', 'systemConfigs',
 				});
 				//设置 树
 				layui.use([ 'tree', 'element','form' ], function() {
-					debugger;
 					layui.tree({
 						elem : '#divForTree',// 传入元素选择器 
 						nodes : $scope.getTreeArr(treeArr, $scope.menus),
@@ -75,8 +78,16 @@ define([ 'angularAMD', 'angular-route', 'angular', 'jquery', 'systemConfigs',
 					});
 				});
 			});
+			 
 		}
-		$scope.getSysTemMenu();
+		
+		function loadMenuBut(){// 加载按钮
+		/*	$.post("/webapp/system/getMenuBut.do", {}, function(res) {
+				
+			});*/
+		}
+		
+		$scope.getSysTemMenu(loadMenuBut);
 		
 		function nextE(arr,count){
 			if(arr[count].urlHtml){

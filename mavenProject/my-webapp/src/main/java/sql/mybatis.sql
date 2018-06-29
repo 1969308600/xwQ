@@ -10,10 +10,88 @@ Target Server Type    : MYSQL
 Target Server Version : 50717
 File Encoding         : 65001
 
-Date: 2018-05-18 14:55:39
+Date: 2018-06-28 14:05:06
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for c_role_menu
+-- ----------------------------
+DROP TABLE IF EXISTS `c_role_menu`;
+CREATE TABLE `c_role_menu` (
+  `id` int(11) NOT NULL,
+  `role_id` int(11) DEFAULT NULL,
+  `menu_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of c_role_menu
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for c_role_menu_but
+-- ----------------------------
+DROP TABLE IF EXISTS `c_role_menu_but`;
+CREATE TABLE `c_role_menu_but` (
+  `id` int(11) NOT NULL,
+  `role_menu_id` int(11) DEFAULT NULL,
+  `but_id` int(11) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of c_role_menu_but
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for c_user_dept
+-- ----------------------------
+DROP TABLE IF EXISTS `c_user_dept`;
+CREATE TABLE `c_user_dept` (
+  `id` int(11) NOT NULL,
+  `dpt_id` int(11) DEFAULT NULL COMMENT '部门id',
+  `user_id` int(11) DEFAULT NULL COMMENT '用户id',
+  PRIMARY KEY (`id`),
+  KEY `user_id` (`user_id`),
+  KEY `dpt_id` (`dpt_id`),
+  CONSTRAINT `dpt_id` FOREIGN KEY (`dpt_id`) REFERENCES `t_sys_dpt` (`id`),
+  CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `t_sys_user` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of c_user_dept
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for c_user_role
+-- ----------------------------
+DROP TABLE IF EXISTS `c_user_role`;
+CREATE TABLE `c_user_role` (
+  `id` int(11) NOT NULL,
+  `role_id` int(11) DEFAULT NULL COMMENT '角色id',
+  `user_id` int(11) DEFAULT NULL COMMENT '用户id',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of c_user_role
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for t_sys_but
+-- ----------------------------
+DROP TABLE IF EXISTS `t_sys_but`;
+CREATE TABLE `t_sys_but` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `code` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of t_sys_but
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for t_sys_dpt
@@ -28,7 +106,7 @@ CREATE TABLE `t_sys_dpt` (
   `create_user` int(11) DEFAULT NULL,
   `parent_dpt` int(11) DEFAULT NULL COMMENT '父级部门id',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of t_sys_dpt
@@ -59,29 +137,30 @@ CREATE TABLE `t_sys_menu` (
   `level` int(2) DEFAULT '1' COMMENT '多少级菜单',
   `parent` int(11) DEFAULT NULL COMMENT '父级',
   `key` varchar(50) DEFAULT NULL COMMENT '用于生成默认url路径',
+  `icon` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=223 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of t_sys_menu
 -- ----------------------------
-INSERT INTO `t_sys_menu` VALUES ('1', '系统管理', '', null, null, null, 'code2000', '1', null, null);
-INSERT INTO `t_sys_menu` VALUES ('2', '你妹', null, null, null, null, 'code2001', '1', null, null);
-INSERT INTO `t_sys_menu` VALUES ('3', '商品管理', null, null, null, null, 'code2002', '1', null, null);
-INSERT INTO `t_sys_menu` VALUES ('4', '其他管理', null, null, null, null, 'code2003', '1', null, null);
-INSERT INTO `t_sys_menu` VALUES ('5', '图形统计', null, null, null, null, null, '1', null, null);
-INSERT INTO `t_sys_menu` VALUES ('11', '首页（锐理）', null, null, null, null, null, '1', null, null);
-INSERT INTO `t_sys_menu` VALUES ('12', '新房管理（锐理）', null, null, null, null, null, '1', null, null);
-INSERT INTO `t_sys_menu` VALUES ('24', '部门管理', 'dept', '../ftl/sys/dept.html', 'webappJs/sys/deptCtrl', 'deptCtrl', 'code3000', '2', '1', '/system/dept');
-INSERT INTO `t_sys_menu` VALUES ('25', '角色管理', 'role', '../ftl/sys/role.html', 'webappJs/sys/roleCtrl', 'roleCtrl', 'code3001', '2', '1', '/system/role');
-INSERT INTO `t_sys_menu` VALUES ('26', '用户管理', 'user', '../ftl/sys/user.html', 'webappJs/sys/userCtrl', 'userCtrl', 'code3002', '2', '1', '/system/user');
-INSERT INTO `t_sys_menu` VALUES ('27', '权限管理', 'power', '../ftl/sys/power.html', 'webappJs/sys/powerCtrl', 'powerCtrl', 'code3003', '2', '1', '/system/power');
-INSERT INTO `t_sys_menu` VALUES ('28', '菜单管理', 'menu', '../ftl/sys/menu.html', 'webappJs/sys/menuCtrl', 'menuCtrl', 'code3004', '2', '1', '/system/menu');
-INSERT INTO `t_sys_menu` VALUES ('29', '流程实列', 'flew', '../ftl/sys/flew.html', 'webappJs/sys/flewCtrl', 'flewCtrl', 'code3005', '2', '1', '/system/flew');
-INSERT INTO `t_sys_menu` VALUES ('51', '楼盘优势分析（锐理）', 'ysAnalysis', '../ftl/analysis/ysA.html', 'webappJs/analysis/ysAnalysisCtrl', 'ysAnalysisCtrl', 'code3006', '2', '5', '/analysis/ysAnalysisCtrl');
-INSERT INTO `t_sys_menu` VALUES ('52', '区域价格分析（锐理）', 'priceAnalysis', '../ftl/analysis/priceA.html', 'webappJs/analysis/priceAnalysisCtrl', 'priceAnalysisCtrl', 'code3007', '2', '5', '/analysis/priceAnalysisCtrl');
-INSERT INTO `t_sys_menu` VALUES ('221', '来呀来呀来呀', null, null, null, null, null, '2', '2', null);
-INSERT INTO `t_sys_menu` VALUES ('222', '来呀来呀来呀2', null, null, null, null, null, '2', '2', null);
+INSERT INTO `t_sys_menu` VALUES ('1', '系统管理', '', null, null, null, 'code2000', '1', null, null, '&#xe614;');
+INSERT INTO `t_sys_menu` VALUES ('2', '你妹', null, null, null, null, 'code2001', '1', null, null, '&#xe659;');
+INSERT INTO `t_sys_menu` VALUES ('3', '商品管理', null, null, null, null, 'code2002', '1', null, null, '&#xe659;');
+INSERT INTO `t_sys_menu` VALUES ('4', '其他管理', null, null, null, null, 'code2003', '1', null, null, '&#xe614;');
+INSERT INTO `t_sys_menu` VALUES ('5', '图形统计', null, null, null, null, null, '1', null, null, '&#xe005;');
+INSERT INTO `t_sys_menu` VALUES ('11', '首页（锐理）', null, null, null, null, null, '1', null, null, '&#xe68e;');
+INSERT INTO `t_sys_menu` VALUES ('12', '新房管理（锐理）', null, null, null, null, null, '1', null, null, '&#xe770;');
+INSERT INTO `t_sys_menu` VALUES ('24', '部门管理', 'dept', '../ftl/sys/dept.html', 'webappJs/sys/deptCtrl', 'deptCtrl', 'code3000', '2', '1', '/system/dept', '&#xe601;');
+INSERT INTO `t_sys_menu` VALUES ('25', '角色管理', 'role', '../ftl/sys/role.html', 'webappJs/sys/roleCtrl', 'roleCtrl', 'code3001', '2', '1', '/system/role', '&#xe602;');
+INSERT INTO `t_sys_menu` VALUES ('26', '用户管理', 'user', '../ftl/sys/user.html', 'webappJs/sys/userCtrl', 'userCtrl', 'code3002', '2', '1', '/system/user', '&#xe603;');
+INSERT INTO `t_sys_menu` VALUES ('27', '权限管理', 'power', '../ftl/sys/power.html', 'webappJs/sys/powerCtrl', 'powerCtrl', 'code3003', '2', '1', '/system/power', '&#xe006;');
+INSERT INTO `t_sys_menu` VALUES ('28', '菜单管理', 'menu', '../ftl/sys/menu.html', 'webappJs/sys/menuCtrl', 'menuCtrl', 'code3004', '2', '1', '/system/menu', '&#xe007;');
+INSERT INTO `t_sys_menu` VALUES ('29', '流程实列', 'flew', '../ftl/sys/flew.html', 'webappJs/sys/flewCtrl', 'flewCtrl', 'code3005', '2', '1', '/system/flew', '&#xe606;');
+INSERT INTO `t_sys_menu` VALUES ('51', '楼盘优势分析（锐理）', 'ysAnalysis', '../ftl/analysis/ysA.html', 'webappJs/analysis/ysAnalysisCtrl', 'ysAnalysisCtrl', 'code3006', '2', '5', '/analysis/ysAnalysisCtrl', '&#xe607;');
+INSERT INTO `t_sys_menu` VALUES ('52', '区域价格分析（锐理）', 'priceAnalysis', '../ftl/analysis/priceA.html', 'webappJs/analysis/priceAnalysisCtrl', 'priceAnalysisCtrl', 'code3007', '2', '5', '/analysis/priceAnalysisCtrl', '&#xe608;');
+INSERT INTO `t_sys_menu` VALUES ('221', '来呀来呀来呀', null, null, null, null, null, '2', '2', null, '&#xe609;');
+INSERT INTO `t_sys_menu` VALUES ('222', '来呀来呀来呀2', null, null, null, null, null, '2', '2', null, '&#xe60a;');
 
 -- ----------------------------
 -- Table structure for t_sys_post
@@ -123,10 +202,11 @@ CREATE TABLE `t_sys_user` (
   `password` varchar(255) NOT NULL,
   `loginName` varchar(255) NOT NULL COMMENT '登录名',
   `createTime` datetime DEFAULT NULL ON UPDATE CURRENT_TIMESTAMP,
+  `safeKey` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of t_sys_user
 -- ----------------------------
-INSERT INTO `t_sys_user` VALUES ('1', 'Q', 'code0001', 'Q.com', '13588822221', '1234', 'admin', '2018-05-18 10:12:09');
+INSERT INTO `t_sys_user` VALUES ('1', 'Q', 'code0001', 'Q.com', '13588822221', '1234', 'admin', '2018-06-28 13:52:26', 'D30EDE89488AB0F00752FA0906DD7E67');

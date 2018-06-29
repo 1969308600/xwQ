@@ -27,12 +27,7 @@ public class TestService implements SystemBaseServiceI<Mapper>{
 	public Mapper getEntity() {
 		return null;
 	}
-
-	@Override
-	public List<Mapper> getEntityList() {
-		return null;
-	}
-
+ 
 	@Override
 	public Mapper findEntityByOneArg(String arg) {
 		return null;
@@ -48,6 +43,13 @@ public class TestService implements SystemBaseServiceI<Mapper>{
 	public void InsertEntity(Mapper t) {
 		 sqlSessionTemplate.insert("insertMapper",t);
 		
+	}
+
+
+	@Override
+	public List<Mapper> getEntityList(Page page) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 

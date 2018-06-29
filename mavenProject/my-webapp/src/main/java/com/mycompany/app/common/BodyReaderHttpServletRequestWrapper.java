@@ -11,6 +11,14 @@ import javax.servlet.ServletInputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletRequestWrapper;
 
+
+/**
+ * 此类  不能获取流    因为只能获取一次，获取了的话，springmvc将无法获取到流，
+ * 这里会开启 万能的坑爹的模式，
+ * @author worker
+ *
+ */
+
 public class BodyReaderHttpServletRequestWrapper extends HttpServletRequestWrapper {
 
     private final byte[] body;

@@ -94,10 +94,11 @@
 		<property name="order" value="0" />
 	</bean>
 
-
+ 
 	<!--json中文乱码 -->
 	<mvc:annotation-driven>
 		<mvc:message-converters>
+        	<bean class="org.springframework.http.converter.ResourceHttpMessageConverter"/>
 			<bean
 				class="org.springframework.http.converter.StringHttpMessageConverter">
 				<!-- <constructor-arg ref="utf8Charset"/> -->

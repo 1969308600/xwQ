@@ -3,6 +3,7 @@ package com.mybatis.web.test;
 public class Page {
 	int page ;
 	int limit ;
+ 
 	public int getPage() {
 		return page;
 	}
@@ -16,7 +17,4 @@ public class Page {
 	 
 		this.limit =   limit;
 	}
-	 
-	
-	
 }

@@ -1,12 +1,5 @@
 package com.mycompany.app.controller.system;
 
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.ExecutorCompletionService;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -59,29 +52,35 @@ public class SystemSSoConroller {
 					return new ResultInfo<>(true, new String(session.getId()));
 				}
 			 	
-			 	ExecutorService exc = Executors.newSingleThreadExecutor(); 
-			 	ExecutorCompletionService<Object> tem = new  ExecutorCompletionService<Object>(exc);
+			 	//ExecutorService exc = Executors.newSingleThreadExecutor(); 
+			 	//ExecutorCompletionService<Object> tem = new  ExecutorCompletionService<Object>(exc);
 			 	
-			 	tem.submit(new Callable<Object>() {
-					@Override
-					public Object call() throws Exception {
-						boolean boo = cacheRedis.add(new CacheEntity(session.getId()
-								, JSONObject.fromObject(user).toString()));	//共享到redis  缺乏加密机制  ，sha-1或者md5，使用+appid的方式安全性会跟高些
-						
-						cacheRedis.keyTimeOut(session.getId(), SomeStatic.TIMEOUT_TEST);
-						return boo;
-					}
-				});
+			 	
+		 
+					boolean boo = cacheRedis.add(new CacheEntity(session.getId()
+							, JSONObject.fromObject(user).toString()));	//共享到redis  缺乏加密机制  ，sha-1或者md5，使用+appid的方式安全性会跟高些
+					
+					cacheRedis.keyTimeOut(session.getId(), SomeStatic.TIMEOUT_TEST);
+//			 	tem.submit(new Callable<Object>() {
+//					@Override
+//					public Object call() throws Exception {
+//						boolean boo = cacheRedis.add(new CacheEntity(session.getId()
+//								, JSONObject.fromObject(user).toString()));	//共享到redis  缺乏加密机制  ，sha-1或者md5，使用+appid的方式安全性会跟高些
+//						
+//						cacheRedis.keyTimeOut(session.getId(), SomeStatic.TIMEOUT_TEST);
+//						return boo;
+//					}
+//				});
 			 	
 			 	
 				try {
-					//if((boolean) tasks.get()) {//session 共享    
+					 if(boo) {//session 共享    
 						//如果我不去 拿线程池里的东西，直接返回，会很快，
 						selectUser.setSafeKey(session.getId());
 						systems.setUserSessionIdByUser(selectUser); 
 						 
 						return new ResultInfo<>(true, session.getId() );
-					//}
+					 }
 				} catch (Exception e) {
 					return new ResultInfo<>(false);
 				}  

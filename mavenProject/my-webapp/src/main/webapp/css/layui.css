@@ -153,15 +153,15 @@ a cite {
 	src:url(../font/iconfont.eot?v=226_rc2);
 	src:url(../font/iconfont.eot?v=226_rc2#iefix) format('embedded-opentype')
 	,url(../font/iconfont.svg?v=226_rc2#iconfont) format('svg')
-	,url(../font/iconfont.woff?v=226_rc2) format('woff')
-	,url(../font/iconfont.ttf?v=226_rc2) format('truetype') 
+	,url(../font/layui-icon.woff?v=226_rc2) format('woff')
+	,url(../font/layui-icon.ttf?v=226_rc2) format('truetype') 
 } 
 
  
 
 .layui-icon {
 	font-family:layui-icon!important;
-	font-size:16px;
+	font-size:20px;
 	font-style:normal;
 	-webkit-font-smoothing:antialiased;
 	-moz-osx-font-smoothing:grayscale
@@ -1337,7 +1337,7 @@ a cite {
 	background-color:#1E9FFF!important
 }
 .layui-bg-black {
-	background-color:#393D49
+	background-color:#000000
 }
 .layui-bg-gray {
 	background-color:#eee!important;

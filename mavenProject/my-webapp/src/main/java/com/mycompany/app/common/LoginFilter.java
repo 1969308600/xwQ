@@ -19,6 +19,7 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 import org.springframework.web.context.support.XmlWebApplicationContext;
 
 import com.app.json.SomeStatic;
+import com.mycompany.app.entity.CacheEntity;
 
 /**
  * 通过查询共享的session来 判断是否登录
@@ -41,9 +42,8 @@ public class LoginFilter implements Filter{
 	@Override
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
-		HttpServletRequest req =  new BodyReaderHttpServletRequestWrapper((HttpServletRequest) request);
+		HttpServletRequest req =   (HttpServletRequest) request;
         HttpServletResponse resp =(HttpServletResponse) response;
-        
         HttpSession session = req.getSession(); 
         Object token = session.getAttribute(SomeStatic.TOKEN);//默认使用请求进来的token，这里缺乏加密机制
         
@@ -63,17 +63,28 @@ public class LoginFilter implements Filter{
     			redisCommon = (CacheRedisCommon) cxt.getBean(SomeStatic.CACHEREDISCOMMON);
     		}
     	} 
-    	if(null==token||redisCommon==null||null==redisCommon.get(token.toString())) {
+    	CacheEntity cache = null;
+    	
+    	try {
+    		cache = redisCommon.get(token.toString());
+    	}catch(Exception e) {
+    		 PrintWriter out = resp.getWriter();//线程不安全，除非你定义threadlocal变量。
+    		 resp.setStatus(900);
+			 out.write(SomeStatic.LOGINOUT); 
+    	}
+    	
+    	if(null==token||redisCommon==null||null==cache) {
     		 String requestType = req.getHeader("X-Requested-With");//识别ajax的响应头   
     		 if (requestType != null && requestType.equals("XMLHttpRequest")) {//如果是ajax类型，
     			 PrintWriter out = resp.getWriter();//线程不安全，除非你定义threadlocal变量。
     			 resp.setStatus(900);
     			 out.write(SomeStatic.LOGINOUT); 
              }else{   
-                 request.getRequestDispatcher(SomeStatic.LOGINHTML).forward(request, response);
+               //  request.getRequestDispatcher(SomeStatic.LOGINHTML).forward(request, response);
+            	 resp.sendRedirect(SomeStatic.LOGINHTML);
              }  
     	}else {
-    		if(null!=redisCommon.get(token.toString()))//不等于null 说明已经缓存，无须做其他判断
+    		if(null!=cache)//不等于null 说明已经缓存，无须做其他判断
     			chain.doFilter(request, response);
     	}
         

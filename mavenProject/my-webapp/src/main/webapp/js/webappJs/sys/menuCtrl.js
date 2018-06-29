@@ -37,10 +37,8 @@ define([ 'app', 'layui' ], function(app) {
 		$scope.dataList = []// 数据
  
 		$scope.getList = function() { 
-			$.post("../system/getMenuListPage.do",  $scope.Page , function(v) {
-				 
-				$scope.data = JSON.parse(v);
-				$scope.dataList = $scope.data.data;
+			$.post("../system/getMenuListPage.do", JSON.stringify( $scope.Page) , function(v) {
+				$scope.dataList = v.data;
 				$.post("../system/getMenuCountForList.do",  {} , function(v) {
 					$scope.count = v;
 					$scope.$digest();
