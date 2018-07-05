@@ -51,14 +51,14 @@ public class systemService implements SystemBaseServiceI<SystemMapper>{
 	}
 
 	@Override
-	public void updateEntity(SystemMapper t) {
-		
+	public int updateEntity(SystemMapper t) {
+		return 0;
 	}
 
 
 	@Override
-	public void InsertEntity(SystemMapper t) {
-		 sqlSessionTemplate.insert("insertMapper",t);
+	public int InsertEntity(SystemMapper t) {
+		 return sqlSessionTemplate.insert("insertMapper",t);
 		
 	}
 
@@ -66,8 +66,5 @@ public class systemService implements SystemBaseServiceI<SystemMapper>{
 	public List<SystemMapper> getEntityList(Page page) {
 		// TODO Auto-generated method stub
 		return null;
-	}
-
-	 
-
+	} 
 }

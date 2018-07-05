@@ -1,15 +1,13 @@
 package com.mycompany.app.controller.system;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.OutputStream;
+import java.util.Date;
 import java.util.List;
 
-import javax.servlet.ServletInputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.commons.lang.time.DateFormatUtils;
+import org.mybatis.system.SystemRole;
 import org.mybatis.system.SystemUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.mybatis.web.test.Layui;
 import com.mybatis.web.test.Page;
+import com.mycompany.app.service.impl.SystemRoleService;
 import com.mycompany.app.service.impl.SystemUserService;
 import com.mycompany.app.service.impl.systemService;
 
@@ -33,6 +32,8 @@ public class SystemConroller {
 	systemService systems ;
 	@Autowired
 	SystemUserService userService ;
+	@Autowired
+	SystemRoleService roleService ;
 
 	@RequestMapping(value = "getMenu.do",produces = "application/json; charset=utf-8")
 	@ResponseBody
@@ -79,6 +80,16 @@ public class SystemConroller {
 		return res;
 	} 
 	//列表
+	@RequestMapping(value = "getRoleList.do",name="角色列表" ,method=RequestMethod.POST, produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public String getRoleList(  HttpServletRequest req,HttpServletResponse resp,@RequestBody Page page) { 
+		List<SystemRole> list = roleService.getEntityList( page );
+		Layui<SystemRole> lu = new Layui<SystemRole>();
+		lu.setData(list);  
+		String res = JSONObject.fromObject(lu).toString();
+		return res;
+	} 
+	//列表
 	@RequestMapping(value = "getMenuCountForList.do")
 	@ResponseBody
 	public int getMenuCountForList(HttpServletResponse resp) {
@@ -86,6 +97,38 @@ public class SystemConroller {
 		return count;
 	}
 	 
+	@RequestMapping(value = "insertRole.do",name="角色插入" ,method=RequestMethod.POST, produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public String insertRole(@RequestBody SystemRole role,HttpServletResponse resp) {
+		int succ = roleService.InsertEntity(role); 
+		Layui<Object> lu = new Layui<Object>();
+		lu.setSuccess(succ);
+		String res = JSONObject.fromObject(lu).toString();
+		return res;
+	}
+	@RequestMapping(value = "insertUser.do",name="用户插入" ,method=RequestMethod.POST, produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public String insertUser(@RequestBody SystemUser user,HttpServletResponse resp) {
+		
+		String userCode = "code";
+		user.setCode(userCode);
+		
+		int succ = userService.InsertEntity(user); 
+		Layui<Object> lu = new Layui<Object>();
+		lu.setSuccess(succ);
+		String res = JSONObject.fromObject(lu).toString();
+		return res;
+	}
+	@RequestMapping(value = "updateUser.do",name="用户更新" ,method=RequestMethod.POST, produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public String updateUser(@RequestBody SystemUser user,HttpServletResponse resp) {
+		int succ = userService.updateEntity(user); 
+		Layui<Object> lu = new Layui<Object>();
+		lu.setSuccess(succ);
+		String res = JSONObject.fromObject(lu).toString();
+		return res;
+	}
+	
 	 
 
 

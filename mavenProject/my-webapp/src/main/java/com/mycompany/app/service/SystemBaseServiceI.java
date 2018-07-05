@@ -13,8 +13,10 @@ public interface  SystemBaseServiceI <T >{
 	T findEntityByOneArg(String arg);
 	
 	
-	void updateEntity(T t);
-	void InsertEntity(T t);
+	int updateEntity(T t);
+	int InsertEntity(T t);
+	
+	
 	
 
 }

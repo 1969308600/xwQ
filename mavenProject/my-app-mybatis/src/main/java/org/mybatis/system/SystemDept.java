@@ -1,6 +1,13 @@
 package org.mybatis.system;
 
-public class SystemDept {
+import java.io.Serializable;
+
+public class SystemDept implements Serializable  {
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	
 	int id;
 	String name;
@@ -13,6 +20,7 @@ public class SystemDept {
 	public void setId(int id) {
 		this.id = id;
 	}
+	 
 	public String getName() {
 		return name;
 	}

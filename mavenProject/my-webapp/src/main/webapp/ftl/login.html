@@ -21,7 +21,7 @@
 <body style=""> 
 <div class="demobackGround">
     <div class="login">
-        <div class="login-form" style="width:600px">
+        <div id="loginForm" class="login-form" style="width:600px">
         
         <div style="background-color: #dcd0b1;height:240px;margin:40px;">
         	<div style="float:left;width:160px;height:210px;margin:15px;">
@@ -102,7 +102,7 @@ function setCookie(c_name, value, expiredays){
 //登录到sso认证中心验证
 var index = 1;
 function dologin(){
-	index = layer.msg('努力中...', {icon: 16,shade: [0.7, '#f5f5f5'],scrollbar: false,offset: '0px', time:100000}) ; 
+	index = layer.msg('努力中...', {icon: 16,shade: [0.7, '#f5f5f5'],scrollbar: false,offset: '100px', time:100000,elem:'#loginForm'}) ; 
 	var coder = $('input[name="code"]').val();
 	var pwd = $('input[name="password"]').val();
 	var postData = JSON.stringify({code:coder,password:pwd});

@@ -32,12 +32,13 @@ public class SystemUserService implements SystemBaseServiceI<SystemUser> {
 	}
 
 	@Override
-	public void updateEntity(SystemUser t) {
-		
+	public int updateEntity(SystemUser t) {
+		return sql.update("updateUser");
 	}
 
 	@Override
-	public void InsertEntity(SystemUser t) {
+	public int InsertEntity(SystemUser t) {
+		return sql.insert("inserUser",t);
 		
 	}
 

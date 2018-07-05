@@ -34,14 +34,14 @@ public class TestService implements SystemBaseServiceI<Mapper>{
 	}
 
 	@Override
-	public void updateEntity(Mapper t) {
-		
+	public int updateEntity(Mapper t) {
+		return 0;
 	}
 
 
 	@Override
-	public void InsertEntity(Mapper t) {
-		 sqlSessionTemplate.insert("insertMapper",t);
+	public int InsertEntity(Mapper t) {
+		 return sqlSessionTemplate.insert("insertMapper",t);
 		
 	}
 

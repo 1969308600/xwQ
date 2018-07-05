@@ -95,6 +95,11 @@ layui.define('layer', function(exports){
                 return '您输入的字数超过限制字数10！';
             }
         }
+        , length13: function (value) {
+            if (value.length > 13) {
+                return '您输入的字数超过限制字数13！';
+            }
+        }
         , length20: function (value) {
             if (value.length > 20) {
                 return '您输入的字数超过限制字数20！';

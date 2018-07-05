@@ -24,10 +24,11 @@
 	      <td>{{v.code}}</td>
 	      <td>{{v.phone}}</td>
 	      <td>{{v.email}}</td>
-	      <td>{{v.dpt}}</td>
+	      <td>{{v.dpt.name}}</td>
 	      <td>{{v.safeKey}}</td>
 	      <td>
 		      <div class="layui-table-cell laytable-cell-3-6">
+		      	<button ng-click="userUpdate(v)" class="layui-btn layui-btn-sm layui-btn-normal"><i class="layui-icon">&#xe642;</i>修改</button>
 		      	<button ng-click="relation(v)" class="layui-btn layui-btn-sm layui-btn-normal"><i class="layui-icon">&#xe641;</i> 角色关联</button>
 		      	<button ng-click="userDelete(v)" class="layui-btn layui-btn-sm layui-btn-danger"><i class="layui-icon">&#xe640;</i> 删除</button>
 		      </div>
@@ -35,8 +36,67 @@
 	    </tr> 
 	  </tbody>
 	</table>
-	
 	<div id ="layuiPageForTest1"></div>
 </div>
 
- 
+
+
+<div id="userAdd" hidden="true" >
+	<div style="padding: 20px" >
+		<form class="layui-form" >
+		  <div class="layui-form-item">
+		    <label class="layui-form-label">用户名</label>
+		    <div class="layui-input-inline">
+		        <input type="text" name="username"  ng-model="userInfo.name"  lay-verify="required|username" placeholder="请输入用户名" autocomplete="off" class="layui-input">
+		    </div>
+		  </div>
+		  <div class="layui-form-item">
+		    <label class="layui-form-label">手机号码</label>
+		    <div class="layui-input-inline">
+		        <input type="text" name="phone"   ng-model="userInfo.phone" lay-verify="required|phone|number|length13" placeholder="请输入号码" autocomplete="off" class="layui-input">
+		    </div>
+		  </div>
+		  <div class="layui-form-item">
+		    <label class="layui-form-label">邮箱</label>
+		    <div class="layui-input-inline">
+		        <input type="text" name="email"   ng-model="userInfo.email" lay-verify="email" placeholder="请输入邮箱" autocomplete="off" class="layui-input">
+		    </div>
+		  </div>
+		  <div class="layui-form-item">
+		    <label class="layui-form-label">头像</label>
+		    <div class="layui-input-inline">
+        	<input type="text" name="avatar"  ng-model="required" placeholder="请上传图片" autocomplete="off" class="layui-input" >
+		    </div>
+		    <button style="float: left;" type="button" class="layui-btn" id="layuiadmin-upload-useradmin">上传图片</button><input class="layui-upload-file" type="file" accept="image/*" name="file"> 
+		  </div>
+		  <div class="layui-form-item">
+		    <label class="layui-form-label">登录名</label>
+		    <div class="layui-input-inline">
+		        <input type="text" name="loginname"   ng-model="userInfo.loginName" lay-verify="required" placeholder="请输入登录名称" autocomplete="off" class="layui-input">
+		    </div>
+		  </div>
+		  <div class="layui-form-item">
+		    <label class="layui-form-label">部门</label>
+		    <div class="layui-input-inline">
+		      <select name="dpt" ng-model="userInfo.dpt.id" lay-verify="required" class="layui-input" style="display: block;">
+		        <option value="">请选择一个</option>
+		       	<option ng-repeat="v in systemDept" value="{{v.id}}" >{{v.name}}</option> 
+		      </select>
+		    </div>
+		  </div>
+		  <div class="layui-form-item">
+		    <label class="layui-form-label">密码</label>
+		    <div class="layui-input-inline">
+		        <input type="password" name="pass"   ng-model="userInfo.password" lay-verify="required|pass" placeholder="请输入密码" autocomplete="off" class="layui-input">
+		    </div>
+		  </div>
+		  
+		  <div class="layui-form-item">
+		    <div class="layui-input-block">
+		      <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+		      <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+		    </div>
+		  </div>
+  		</form>
+	  </div>
+</div> 

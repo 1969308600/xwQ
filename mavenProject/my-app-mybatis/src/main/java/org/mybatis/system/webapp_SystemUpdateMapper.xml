@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 可以随意在当前目录 加*mapper.xml-->
+<mapper namespace="org.mybatis.system.SystemMapperI">
+	<update id="updateUser">
+		update t_b_user set name =#{name},phone=#{phone},dpt=#{dpt.id},loginName=#{loginName},password=#{password},email=#{email} where id =#{id}
+	</update>
+</mapper>

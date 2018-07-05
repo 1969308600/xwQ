@@ -1,1 +1,43 @@
-<div  >test2{{object.username}}role</div>
+<div class="layui-tab-content">
+	<button class="layui-btn"  ng-click="doAdd()">
+	  <i class="layui-icon">&#xe608;</i>新增
+	</button>
+	 
+	<button class="layui-btn layui-btn-sm layui-btn-primary" onclick="window.location.reload();">
+	  <i class="layui-icon">&#x1002;</i>
+	</button>
+	
+	<table class="layui-table">
+	  <colgroup>
+	    <col ng-repeat="v in column"  width='ng-bind: v.width' >
+	  </colgroup>
+	  <thead>
+	    <tr>
+	      <th ng-repeat="v in column">{{v.field}}</th> 
+	    </tr> 
+	  </thead>
+	  <tbody>
+	  <!-- 和layui比起来ng1看起来灵活一些 -->
+	    <tr ng-repeat="v in dataList">
+	      <td>{{v.id}}</td>
+	      <td>{{v.name}}</td>
+	      <td>{{v.code}}</td>
+	      <td>{{v.phone}}</td>
+	      <td>{{v.email}}</td>
+	      <td>{{v.dpt}}</td>
+	      <td>{{v.safeKey}}</td>
+	      <td>
+		      <div class="layui-table-cell laytable-cell-3-6">
+		      	<button ng-click="userUpdate(v)" class="layui-btn layui-btn-sm layui-btn-normal"><i class="layui-icon">&#xe642;</i>修改</button>
+		      	<button ng-click="relation(v)" class="layui-btn layui-btn-sm layui-btn-normal"><i class="layui-icon">&#xe641;</i> 角色关联</button>
+		      	<button ng-click="userDelete(v)" class="layui-btn layui-btn-sm layui-btn-danger"><i class="layui-icon">&#xe640;</i> 删除</button>
+		      </div>
+	      </td>
+	    </tr> 
+	  </tbody>
+	</table>
+	
+	<div id ="layuiPageForTest1"></div>
+</div>
+
+ 

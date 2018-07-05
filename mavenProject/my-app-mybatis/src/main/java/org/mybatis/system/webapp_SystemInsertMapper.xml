@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 可以随意在当前目录 加*mapper.xml-->
+<mapper namespace="org.mybatis.system.SystemMapperI">
+	<insert id="insertRole">
+		insert into t_sys_Role(name) values(#{name})
+	</insert>
+	<insert id="inserUser">
+		insert into t_sys_user(name,code,email,password,loginName,dpt,phone) values (#{name},CONCAT( #{code},nextval('s_user_code')),#{email},#{password},#{loginName},#{dpt.id},#{phone})
+	</insert>
+</mapper>

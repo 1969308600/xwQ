@@ -7,6 +7,7 @@ public class Layui<T> {
 	 String count;
 	 String  code="";
 	 String msg=""  ; 
+	 int success;
 	 List<T> data;
 	public String getCount() {
 		return count;
@@ -32,5 +33,12 @@ public class Layui<T> {
 	public void setData( List<T>  data) {
 		this.data = data;
 	}
+	public int getSuccess() {
+		return success;
+	}
+	public void setSuccess(int success) {
+		this.success = success;
+	}
+	 
 
 }

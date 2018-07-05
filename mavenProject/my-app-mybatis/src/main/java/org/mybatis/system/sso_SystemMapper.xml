@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-
+<!-- 可以随意在当前目录 加*mapper.xml-->
 <mapper namespace="org.mybatis.system.SystemMapperI">
 
 	<select id="getUserByNameAndCode" resultType="org.mybatis.system.SystemUser">

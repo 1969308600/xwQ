@@ -19,7 +19,18 @@ define([ 'angularAMD', 'angular-route', 'angular', 'jquery', 'systemConfigs',
 		$scope.test = "xwQ";
 		$scope.currMenuName = "首页";
 		$scope.menus = sysMenus;// 设置静态默认值
-
+		
+		//全局常量
+		$scope.systemDept={}; 
+		
+		//获取全局 常用固定 数据（字典之类的）
+		$scope.getSystemDept= function() {
+			$.post("/webapp/system/getDeptList.do", {}, function(res) {
+				debugger
+				$scope.systemDept = res.data;
+			});
+		}
+		
 		//树 部分 数据转换
 		$scope.getTreeArr = function(parntArr, hasChildArr) {
 			parntArr.forEach(function(v) {
@@ -86,8 +97,11 @@ define([ 'angularAMD', 'angular-route', 'angular', 'jquery', 'systemConfigs',
 				
 			});*/
 		}
-		
-		$scope.getSysTemMenu(loadMenuBut);
+		$scope.initMethod = function(){
+			$scope.getSysTemMenu(loadMenuBut);
+			$scope.getSystemDept();
+		}
+		$scope.initMethod();
 		
 		function nextE(arr,count){
 			if(arr[count].urlHtml){
@@ -147,7 +161,7 @@ define([ 'angularAMD', 'angular-route', 'angular', 'jquery', 'systemConfigs',
 			loadtime(scope, $stateProvider)
 		}, 5); // 方案一：菜单静态化 但是scope无法获取，需要延迟！！！！！！！0.005 劲量最优了
 	});
-
+	 
 	//angular 的amd加载
 	return angularAMD.bootstrap(app);
 });

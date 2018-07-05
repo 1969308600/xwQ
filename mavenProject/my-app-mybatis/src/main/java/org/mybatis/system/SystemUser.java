@@ -1,15 +1,21 @@
 package org.mybatis.system;
 
-public class SystemUser {
-	String id;
-	String safeKey;//sessionid的加密
-	String name;
-	String code;
-	String loginName;
-	String phone;
-	String dptId;
-	String email;
-	String password;
+import java.io.Serializable;
+
+public class SystemUser implements Serializable  {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private String id;
+	private String safeKey;//sessionid的加密
+	private String name;
+	private String code;
+	private String loginName;
+	private String phone;
+	private String email;
+	private String password;
+	private SystemDept dpt;
 	public String getId() {
 		return id;
 	}
@@ -58,11 +64,12 @@ public class SystemUser {
 	public void setSafeKey(String safeKey) {
 		this.safeKey = safeKey;
 	}
-	public String getDptId() {
-		return dptId;
+ 
+	public SystemDept getDpt() {
+		return dpt;
 	}
-	public void setDptId(String dptId) {
-		this.dptId = dptId;
+	public void setDpt(SystemDept dpt) {
+		this.dpt = dpt;
 	}
 	 
 	
