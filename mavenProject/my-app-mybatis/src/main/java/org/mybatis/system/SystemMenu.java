@@ -3,15 +3,16 @@ package org.mybatis.system;
 import java.io.Serializable;
 import java.util.List;
 
-public class SystemRole implements Serializable  {
+public class SystemMenu implements  Serializable{
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
 	private String id;
 	private String name;
-	private String meo;
-	private List<SystemMenu> menus;
+	private List<SystemBtn> btns;
 	public String getId() {
 		return id;
 	}
@@ -24,20 +25,14 @@ public class SystemRole implements Serializable  {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getMeo() {
-		return meo;
+	public List<SystemBtn> getBtns() {
+		return btns;
 	}
-	public void setMeo(String meo) {
-		this.meo = meo;
+	public void setBtns(List<SystemBtn> btns) {
+		this.btns = btns;
 	}
-	public List<SystemMenu> getMenuId() {
-		return menus;
-	}
-	public void setMenuId(List<SystemMenu> menuId) {
-		this.menus = menuId;
-	}
-	 
-	 
 	
-
+	
+	
+	
 }

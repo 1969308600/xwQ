@@ -1,12 +1,10 @@
 package com.mycompany.app.controller.system;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.commons.lang.time.DateFormatUtils;
 import org.mybatis.system.SystemRole;
 import org.mybatis.system.SystemUser;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -123,6 +121,25 @@ public class SystemConroller {
 	@ResponseBody
 	public String updateUser(@RequestBody SystemUser user,HttpServletResponse resp) {
 		int succ = userService.updateEntity(user); 
+		Layui<Object> lu = new Layui<Object>();
+		lu.setSuccess(succ);
+		String res = JSONObject.fromObject(lu).toString();
+		return res;
+	}
+	@RequestMapping(value = "updateRole.do",name="角色更新" ,method=RequestMethod.POST, produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public String updateRole(@RequestBody SystemRole role,HttpServletResponse resp) {
+		int succ = roleService.updateEntity(role); 
+		Layui<Object> lu = new Layui<Object>();
+		lu.setSuccess(succ);
+		String res = JSONObject.fromObject(lu).toString();
+		return res;
+	}
+	
+	@RequestMapping(value = "updateRoleMenuAndBtn.do",name="角色菜单按钮关联" ,method=RequestMethod.POST, produces = "application/json; charset=utf-8")
+	@ResponseBody
+	public String updateRoleMenuAndBtn(@RequestBody SystemRole role,HttpServletResponse resp) {
+		int succ = roleService.updateRoleRelation(role); 
 		Layui<Object> lu = new Layui<Object>();
 		lu.setSuccess(succ);
 		String res = JSONObject.fromObject(lu).toString();

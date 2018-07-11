@@ -17,16 +17,17 @@ define([ 'angularAMD', 'angular-route', 'angular', 'jquery', 'systemConfigs',
 	});
 	app.controller('myAppController', function($scope, $state) {// 系统controller，加载资源（菜单，字典。。）
 		$scope.test = "xwQ";
+		$scope.dptName = "开发部";
 		$scope.currMenuName = "首页";
-		$scope.menus = sysMenus;// 设置静态默认值
 		
-		//全局常量
+		//全局常量 对象/集合
+		$scope.menus = sysMenus;// 设置静态默认值
 		$scope.systemDept={}; 
+		$scope.systemForbidden={};  
 		
 		//获取全局 常用固定 数据（字典之类的）
 		$scope.getSystemDept= function() {
 			$.post("/webapp/system/getDeptList.do", {}, function(res) {
-				debugger
 				$scope.systemDept = res.data;
 			});
 		}
@@ -44,6 +45,7 @@ define([ 'angularAMD', 'angular-route', 'angular', 'jquery', 'systemConfigs',
 				});
 				v.children = childArr;
 			});
+			childArr = [];
 			return parntArr;
 		}
 		

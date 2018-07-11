@@ -15,7 +15,8 @@ public class SystemUser implements Serializable  {
 	private String phone;
 	private String email;
 	private String password;
-	private SystemDept dpt;
+	private SystemDept dpt;//对应表来说  用户表是不该关联的，在中间表中关联，实体类只是表示关系而已 ,   这里在表里建了dpt字段就不得行。对应订单这种可以，
+	private SystemRole role;//对应表来说  用户表是不该关联的，在中间表中关联，实体类只是表示关系而已
 	public String getId() {
 		return id;
 	}
@@ -70,6 +71,12 @@ public class SystemUser implements Serializable  {
 	}
 	public void setDpt(SystemDept dpt) {
 		this.dpt = dpt;
+	}
+	public SystemRole getRole() {
+		return role;
+	}
+	public void setRole(SystemRole role) {
+		this.role = role;
 	}
 	 
 	

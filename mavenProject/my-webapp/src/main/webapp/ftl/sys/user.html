@@ -80,7 +80,7 @@
 		    <div class="layui-input-inline">
 		      <select name="dpt" ng-model="userInfo.dpt.id" lay-verify="required" class="layui-input" style="display: block;">
 		        <option value="">请选择一个</option>
-		       	<option ng-repeat="v in systemDept" value="{{v.id}}" >{{v.name}}</option> 
+		       	<option ng-repeat="v in systemDept" ng-selected="{{v.id}}==userInfo.dpt.id" value="{{v.id}}" >{{v.name}}</option> 
 		      </select>
 		    </div>
 		  </div>
@@ -93,7 +93,7 @@
 		  
 		  <div class="layui-form-item">
 		    <div class="layui-input-block">
-		      <button class="layui-btn" lay-submit lay-filter="formDemo">立即提交</button>
+		      <button class="layui-btn" lay-submit lay-filter="formUser">立即提交</button>
 		      <button type="reset" class="layui-btn layui-btn-primary">重置</button>
 		    </div>
 		  </div>

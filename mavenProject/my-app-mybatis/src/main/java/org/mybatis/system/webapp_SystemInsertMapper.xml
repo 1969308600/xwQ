@@ -5,9 +5,28 @@
 <!-- 可以随意在当前目录 加*mapper.xml-->
 <mapper namespace="org.mybatis.system.SystemMapperI">
 	<insert id="insertRole">
-		insert into t_sys_Role(name) values(#{name})
+		insert into t_sys_Role(name,meo) values(#{name},#{meo})
 	</insert>
 	<insert id="inserUser">
 		insert into t_sys_user(name,code,email,password,loginName,dpt,phone) values (#{name},CONCAT( #{code},nextval('s_user_code')),#{email},#{password},#{loginName},#{dpt.id},#{phone})
+	</insert>
+	<insert id="insertRoleRelation">
+		<!-- 将关联关系放入中间表的优势在于，对于除开查询外的 不需要操作太多表，只需操作中间表 -->
+		insert into c_role_menu(role_id,menu_id) values(#{id},
+		<foreach collection="menus" item="menu" index="index"  open="" close="" separator="">
+			#{menu.id}  
+        </foreach>
+       <!--  #{menus.id} -->
+        );
+		
+		insert into c_role_menu_btn(btn_id,role_menu_id) values(
+		<!-- #{menus.btns.id} -->
+		<foreach collection="menus" item="menu" index="index"  open="" close="" separator="">
+			#{menu.id}  
+			<foreach collection="menu.btns" item="btn" index="index_b"  open="" close="" separator="">
+           		#{btn.id}
+       		</foreach>
+        </foreach>
+		,#{menus.id});
 	</insert>
 </mapper>

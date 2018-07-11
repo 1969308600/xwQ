@@ -89,7 +89,7 @@ define([ 'app' ], function(app) {
 					layui.use('form', function() {
 						var form = layui.form;
 						//监听提交
-						form.on('submit(formDemo)', function(data) {
+						form.on('submit(formUser)', function(data) {
 							$.post("../system/insertUser.do", JSON
 									.stringify($scope.userInfo), function(res) {
 								if(res.success==1){
@@ -111,14 +111,15 @@ define([ 'app' ], function(app) {
 						area : [ '510px', '510px' ],
 						content : $('#userAdd'),
 						cancel : function() { // 右上角关闭回调
-
+							$scope.userInfo={};//取消时清除对象，不然影响新增。
 						}
 					});
+					
 					//验证
 					layui.use('form', function() {
 						var form = layui.form;
 						//监听提交
-						form.on('submit(formDemo)', function(data) {
+						form.on('submit(formUser)', function(data) {
 							$.post("../system/updateUser.do", JSON
 									.stringify($scope.userInfo), function(res) {
 								if(res.success==1){
@@ -130,6 +131,7 @@ define([ 'app' ], function(app) {
 							});
 						});
 					});
+				
 				}
 
 			} ])

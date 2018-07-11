@@ -12,6 +12,11 @@
 		<result column="dpt_name" property="name" />
 		<result column="dpt_status" property="status" />
 	</resultMap> 
+	<resultMap type="org.mybatis.system.SystemRole" id="role">
+		<id column="role_id" property="id" />
+		<result column="role_name" property="name" />
+		<result column="role_meo" property="meo" />
+	</resultMap> 
 	
 	<resultMap type="org.mybatis.system.SystemUser" id="user">
 		<id column="id" property="id" />
@@ -23,6 +28,7 @@
 		<result column="loginName" property="loginName" />
 		<result column="phone" property="phone" />
 		<association property="dpt" resultMap="dept" />
+		<association property="role" resultMap="role" />
 	</resultMap> 
 	
 	<!-- 开启二级缓存 -->
@@ -55,7 +61,7 @@
 	<select id="getUserList" resultMap="user" useCache="false" > 
 		select * from t_sys_user tuser LEFT JOIN t_sys_dpt dpt on tuser.dpt = dpt.dpt_id order by id desc  limit #{page},#{limit}  
 	</select>
-	<select id="getRoleList" resultType="org.mybatis.system.SystemRole" >
+	<select id="getRoleList" resultType="org.mybatis.system.SystemRole" useCache="false" >
 		select * from t_sys_Role limit #{page},#{limit};
 	</select>
 </mapper>

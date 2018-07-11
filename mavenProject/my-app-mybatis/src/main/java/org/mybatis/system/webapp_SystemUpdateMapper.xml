@@ -7,4 +7,8 @@
 	<update id="updateUser">
 		update t_sys_user set name =#{name},phone=#{phone},dpt=#{dpt.id},loginName=#{loginName},password=#{password},email=#{email} where id =#{id}
 	</update>
+	<update id="updateRole">
+		update t_sys_role set name =#{name},meo=#{meo} where id =#{id}
+	</update>
+	 
 </mapper>

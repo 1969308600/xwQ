@@ -1,43 +1,111 @@
 <div class="layui-tab-content">
-	<button class="layui-btn"  ng-click="doAdd()">
-	  <i class="layui-icon">&#xe608;</i>ĞÂÔö
+	<button class="layui-btn" ng-click="roleAdd()">
+		<i class="layui-icon">&#xe608;</i>æ–°å¢
 	</button>
-	 
-	<button class="layui-btn layui-btn-sm layui-btn-primary" onclick="window.location.reload();">
-	  <i class="layui-icon">&#x1002;</i>
+
+	<button class="layui-btn layui-btn-sm layui-btn-primary"
+		onclick="window.location.reload();">
+		<i class="layui-icon">&#x1002;</i>
 	</button>
-	
+
 	<table class="layui-table">
-	  <colgroup>
-	    <col ng-repeat="v in column"  width='ng-bind: v.width' >
-	  </colgroup>
-	  <thead>
-	    <tr>
-	      <th ng-repeat="v in column">{{v.field}}</th> 
-	    </tr> 
-	  </thead>
-	  <tbody>
-	  <!-- ºÍlayui±ÈÆğÀ´ng1¿´ÆğÀ´Áé»îÒ»Ğ© -->
-	    <tr ng-repeat="v in dataList">
-	      <td>{{v.id}}</td>
-	      <td>{{v.name}}</td>
-	      <td>{{v.code}}</td>
-	      <td>{{v.phone}}</td>
-	      <td>{{v.email}}</td>
-	      <td>{{v.dpt}}</td>
-	      <td>{{v.safeKey}}</td>
-	      <td>
-		      <div class="layui-table-cell laytable-cell-3-6">
-		      	<button ng-click="userUpdate(v)" class="layui-btn layui-btn-sm layui-btn-normal"><i class="layui-icon">&#xe642;</i>ĞŞ¸Ä</button>
-		      	<button ng-click="relation(v)" class="layui-btn layui-btn-sm layui-btn-normal"><i class="layui-icon">&#xe641;</i> ½ÇÉ«¹ØÁª</button>
-		      	<button ng-click="userDelete(v)" class="layui-btn layui-btn-sm layui-btn-danger"><i class="layui-icon">&#xe640;</i> É¾³ı</button>
-		      </div>
-	      </td>
-	    </tr> 
-	  </tbody>
+		<colgroup>
+			<col ng-repeat="v in column" width='ng-bind: v.width'>
+		</colgroup>
+		<thead>
+			<tr>
+				<th ng-repeat="v in column">{{v.field}}</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="v in dataList">
+				<td>{{v.id}}</td>
+				<td>{{v.name}}</td>
+				<td>{{v.meo}}</td>
+				<td>
+					<div class="layui-table-cell laytable-cell-3-6">
+						<button ng-click="roleUpdate(v)"
+							class="layui-btn layui-btn-sm layui-btn-normal">
+							<i class="layui-icon">&#xe642;</i>ä¿®æ”¹
+						</button>
+						<button ng-click="roleRelation(v)"
+							class="layui-btn layui-btn-sm layui-btn-normal">
+							<i class="layui-icon">&#xe641;</i>æƒé™
+						</button>
+						<button ng-click="roleDelete(v)"
+							class="layui-btn layui-btn-sm layui-btn-danger">
+							<i class="layui-icon">&#xe640;</i>åˆ é™¤
+						</button>
+					</div>
+				</td>
+			</tr>
+		</tbody>
 	</table>
-	
-	<div id ="layuiPageForTest1"></div>
+
+	<div id="layuiPageForTest1"></div>
 </div>
 
- 
+
+<div id="roleAdd" hidden="true">
+	<div style="padding: 20px">
+		<form class="layui-form">
+			<div class="layui-form-item">
+				<label class="layui-form-label">è§’è‰²</label>
+				<div class="layui-input-inline">
+					<input type="text" name="rolename" ng-model="roleInfo.name"
+						lay-verify="required|username" placeholder="è¯·è¾“å…¥è§’è‰²"
+						autocomplete="off" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">æè¿°</label>
+				<div class="layui-input-inline">
+					<textarea name="meo" ng-model="roleInfo.meo"
+						lay-verify="required|textarea|length200" placeholder="è¯·è¾“å…¥æè¿°"
+						autocomplete="off" class="layui-textarea"></textarea>
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<div class="layui-input-block">
+					<button class="layui-btn" lay-submit lay-filter="formRole">ç«‹å³æäº¤</button>
+					<button type="reset" class="layui-btn layui-btn-primary">é‡ç½®</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+
+<div id="roleRelation" hidden="true">
+	
+	<div style="padding: 20px;width:540px;dispaly:inline;">
+		<div style="width:260px;float:left;">
+			<form class="layui-form">
+				<div id="menuTreeForRoleForm"></div>
+	
+			</form>
+		</div>
+		
+		<div style="float:left;width:240px;padding:20px">
+			<form  class="layui-form">
+				
+			 	<div class="layui-form-item" id="menuBtn">
+				    <label class="layui-form-label">{{currChoiceMenuName}}_æŒ‰é’®æƒé™ :</label>
+				    <div class="layui-input-block">
+				      <input class="menuBtn" type="checkbox" lay-filter="btn_filter"  lay-skin="primary" value="1" title="å¢åŠ "> 
+				      <input class="menuBtn" type="checkbox" lay-filter="btn_filter"   lay-skin="primary" value="2" title="åˆ é™¤"> 
+				      <input class="menuBtn" type="checkbox" lay-filter="btn_filter"   lay-skin="primary" value="3" title="ä¿®æ”¹"> 
+				      <input class="menuBtn" type="checkbox" lay-filter="btn_filter"   lay-skin="primary" value="4" title="æŸ¥è¯¢"> 
+				    </div>
+			 	</div>
+					
+				<div class="layui-form-item">
+					<div class="layui-input-inline" style="padding-left:40px;padding-top:20px">
+						<button class="layui-btn" lay-submit lay-filter="formRoleRelation">ç«‹å³æäº¤</button>
+						<button type="reset" class="layui-btn layui-btn-primary">é‡ç½®</button>
+					</div>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+

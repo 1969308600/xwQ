@@ -26,7 +26,7 @@ public class SystemRoleService implements SystemBaseServiceI<SystemRole> {
 
 	@Override
 	public List<SystemRole> getEntityList(Page page) {
-		return sql.selectList("getRoleList");
+		return sql.selectList("getRoleList",page);
 	}
 
 	@Override
@@ -37,14 +37,18 @@ public class SystemRoleService implements SystemBaseServiceI<SystemRole> {
 
 	@Override
 	public int updateEntity(SystemRole t) {
-		// TODO Auto-generated method stub
-		return 0;
+		return sql.update("updateRole",t);
 		
 	}
 	@Override
 	@Transactional
 	public int InsertEntity(SystemRole t) {
 		return sql.insert("insertRole",t);
+		
+	}
+	@Transactional
+	public int updateRoleRelation(SystemRole t) {
+		return sql.insert("insertRoleRelation",t);
 		
 	}
 	

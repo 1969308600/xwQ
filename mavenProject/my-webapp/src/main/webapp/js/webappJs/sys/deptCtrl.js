@@ -5,9 +5,9 @@
 define([ 'app','systemConfigs' ], function(app) {
 	//操作按钮
 	var Templete = '<div class="layui-btn-group">'
-			  +'<button  ng-click="deptUpdate(this,{{d.id}})" class="layui-btn layui-btn-sm layui-btn-normal"><i class="layui-icon">&#xe642;</i></button>'
-			  +'<button ng-click="deptDelete(this,{{d.id}})" class="layui-btn layui-btn-sm layui-btn-danger"><i class="layui-icon">&#xe640;</i></button>'
-	    	  +'<button  ng-click="deptDetail(this,{{d.id}})" class="layui-btn layui-btn-sm layui-btn-warm">  <i class="layui-icon">&#xe602;</i></button></div>';
+			  +'<button  ng-click="deptUpdate(this,{{d.id}})" class="layui-btn layui-btn-sm layui-btn-normal"><i class="layui-icon">&#xe642;</i>修改</button>'
+			  +'<button ng-click="deptDelete(this,{{d.id}})" class="layui-btn layui-btn-sm layui-btn-danger"><i class="layui-icon">&#xe640;</i>删除</button>'
+	    	/*  +'<button  ng-click="deptDetail(this,{{d.id}})" class="layui-btn layui-btn-sm layui-btn-warm">  <i class="layui-icon">&#xe602;</i></button></div>'*/;
 	
 	app.controller('deptCtrl', [ '$scope','$compile', function($scope,$compile) {
 		 
