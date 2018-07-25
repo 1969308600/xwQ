@@ -3,6 +3,8 @@
  * @version v0.4.2
  * @link http://angular-ui.github.com/
  * @license MIT License, http://www.opensource.org/licenses/MIT
+ * 
+ * 标记为xwq的地方为本人修改过的
  */
 
 /* commonjs package manager support (eg componentjs) */
@@ -3250,9 +3252,16 @@ function $StateProvider(   $urlRouterProvider,   $urlMatcherFactory) {
       }
       if (toState[abstractKey]) throw new Error("Cannot transition to abstract state '" + to + "'");
       if (options.inherit) toParams = inheritParams($stateParams, toParams || {}, $state.$current, toState);
-      if (!toState.params.$$validates(toParams)) return TransitionFailed;
-
-      toParams = toState.params.$$values(toParams);
+      
+//      if(toState.params.$$validates)
+//    	  if (!toState.params.$$validates(toParams)) return TransitionFailed;
+//      
+//      if(toState.params.$$values)
+//    	  toParams = toState.params.$$values(toParams);
+//       //xwq
+      //妈哟，上边没看懂，直接暴力
+      toState.params.param  = toParams;
+      
       to = toState;
 
       var toPath = to.path;
@@ -3304,7 +3313,8 @@ function $StateProvider(   $urlRouterProvider,   $urlMatcherFactory) {
       }
 
       // Filter parameters before we pass them to event handlers etc.
-      toParams = filterByKeys(to.params.$$keys(), toParams || {});
+      //xwq
+     // toParams = filterByKeys(to.params.$$keys(), toParams || {});
       
       // Re-add the saved hash before we start returning things or broadcasting $stateChangeStart
       if (hash) toParams['#'] = hash;

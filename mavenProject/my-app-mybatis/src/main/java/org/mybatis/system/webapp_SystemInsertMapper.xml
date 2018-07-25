@@ -12,21 +12,14 @@
 	</insert>
 	<insert id="insertRoleRelation">
 		<!-- 将关联关系放入中间表的优势在于，对于除开查询外的 不需要操作太多表，只需操作中间表 -->
-		insert into c_role_menu(role_id,menu_id) values(#{id},
-		<foreach collection="menus" item="menu" index="index"  open="" close="" separator="">
-			#{menu.id}  
-        </foreach>
-       <!--  #{menus.id} -->
-        );
-		
-		insert into c_role_menu_btn(btn_id,role_menu_id) values(
-		<!-- #{menus.btns.id} -->
-		<foreach collection="menus" item="menu" index="index"  open="" close="" separator="">
-			#{menu.id}  
-			<foreach collection="menu.btns" item="btn" index="index_b"  open="" close="" separator="">
-           		#{btn.id}
-       		</foreach>
-        </foreach>
-		,#{menus.id});
+		<if test="roleId!=null and roleId!=''">
+			insert into c_role_menu(role_id,menu_id) select #{roleId},#{menuId} from dual 
+			WHERE not exists( select 1 from  c_role_menu where role_id= #{roleId} and menu_id=#{menuId}) ;
+			<!-- 这儿不是用的id来检查是否存在，所以select时会锁住,只能读不能其他操作 -->
+		</if>
+		<if test="btnId!=null and btnId!=''" >
+			insert into c_role_menu_btn(btn_id,menu_id,role_id) select #{btnId},#{menuId} ,#{roleId} from dual WHERE not exists( select 1 from  c_role_menu_btn where btn_id= #{btnId} 
+			and menu_id=#{menuId} and role_id =#{roleId});
+		</if>
 	</insert>
 </mapper>

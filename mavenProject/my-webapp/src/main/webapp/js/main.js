@@ -9,7 +9,8 @@ require.config({
 		"layui" : "lay/test/design/layui",    
 		"jquery" : "jquery/jquery-3.3.1", 
 		"app":"app",
-		"ajaxStep":"ajaxStep"
+		"ajaxStep":"ajaxStep",
+		"qiniu":"qiniu/qiniu.min"
 			
 
 	},

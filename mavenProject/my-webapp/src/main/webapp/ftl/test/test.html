@@ -1,0 +1,16 @@
+<div class="layui-tab-content">
+ 
+
+	七牛上传测试：
+	<input type ='button' class="layui-btn" value="选择上传文件"  ng-click="chioceFile('#thisFile')">
+	<input type ='button' class="layui-btn" value='绑定'  ng-click="bindToFile()">
+	<input type = 'file' hidden="true" id = 'thisFile'/>  <!-- multiple="multiple" -->
+	<input type ='button' class="layui-btn" value='上传'  ng-click="upload()">
+	
+	
+	<span>{{fileKey}}</span>
+	
+	 
+</div>
+
+ 

@@ -17,16 +17,16 @@ public class systemService implements SystemBaseServiceI<SystemMapper>{
 	@Autowired 
 	public SqlSessionTemplate sqlSessionTemplate;
 	
-	@Cacheable(value="userCache",key="#cacheKey",condition="1==1")
+	//@Cacheable(value="userCache",key="#cacheKey",condition="1==1")
 	public List<Object> getMenuListByPage(Page pages,String cacheKey){
 		 return sqlSessionTemplate.selectList("getMenuList",pages);
 	}
 	
-	@Cacheable(value="userCache",key="#rcacheKey",condition="1==1")
+	//@Cacheable(value="userCache",key="#rcacheKey",condition="1==1")
 	public List<Object> getMenu( String rcacheKey){
 		return sqlSessionTemplate.selectList("getMenu");
 	}
-	@Cacheable(value="userCache",key="#rcacheKey",condition="1==1")
+	//@Cacheable(value="userCache",key="#rcacheKey",condition="1==1")
 	public List<Object> getDeptList( String rcacheKey){
 		return sqlSessionTemplate.selectList("getDept");
 	}

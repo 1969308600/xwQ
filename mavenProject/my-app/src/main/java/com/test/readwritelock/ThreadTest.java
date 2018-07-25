@@ -1,6 +1,8 @@
 package com.test.readwritelock;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.TimerTask;
 import java.util.concurrent.Callable;
@@ -10,7 +12,10 @@ import java.util.concurrent.ExecutorCompletionService;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
+import java.util.concurrent.FutureTask;
 import java.util.concurrent.locks.ReentrantLock;
+
+import org.springframework.scheduling.config.Task;
 
   class ThreadTest2  extends Thread  {
 	ReadWriteLocktest e = new ReadWriteLocktest();
@@ -193,9 +198,13 @@ public class ThreadTest {
 			
 			//
 			ExecutorCompletionService<String> exc = new ExecutorCompletionService<>(ex);
-			
+			List<FutureTask> task = new ArrayList<FutureTask>(); 
 			for(int i=0;i<100;i++) {//假设每个线程所花时间都是十几秒这样子的  而且不知道有多少这种任务
 				exc.submit(new TestCallAble());
+				
+//				FutureTask<String> tsk = new FutureTask<String>(new TestCallAble());
+//				task.add(tsk);
+				
 				System.out.println("任务"+i);
 			}
 			Map<String,Object> map = new HashMap<String,Object>();

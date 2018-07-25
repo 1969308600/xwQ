@@ -1,0 +1,95 @@
+<div class="layui-tab-content">
+	<button class="layui-btn" ng-click="roleAdd()">
+		<i class="layui-icon">&#xe608;</i>新增
+	</button>
+	
+	 
+
+	<button class="layui-btn layui-btn-sm layui-btn-primary"
+		onclick="window.location.reload();">
+		<i class="layui-icon">&#x1002;</i>
+	</button>
+
+	七牛上传测试：
+	<input type ='button' class="layui-btn" value="选择上传文件"  ng-click="chioceFile('#thisFile')">
+	<input type ='button' class="layui-btn" value='绑定'  ng-click="bindToFile()">
+	<input type = 'file' hidden="true" id = 'thisFile'/>  <!-- multiple="multiple" -->
+	<input type ='button' class="layui-btn" value='上传'  ng-click="upload()">
+	
+	
+	
+	<table class="layui-table">
+		<colgroup>
+			<col ng-repeat="v in column" width='ng-bind: v.width'>
+		</colgroup>
+		<thead>
+			<tr>
+				<th ng-repeat="v in column">{{v.field}}</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="v in dataList">
+				<td>{{v.id}}</td>
+				<td><a  style="color:#0a416a;cursor: pointer;" ng-click="detail(v)">{{v.uptwonName}}</a></td>
+				<td>{{v.cityArea}}</td>
+				<td>{{v.avgPrice}}</td>
+				<td>{{v.developer}}</td>
+				<td>{{v.saleStatus}}</td>
+				<td>{{v.transferDate}}</td>
+				<td>{{v.allHolds}}</td>
+				<td>{{v.commission}}</td>
+				<td>{{v.rebateName}}</td>
+				<td>{{v.forb}}</td>
+				<td>
+					<div class="layui-table-cell laytable-cell-3-6">
+						<button ng-click="nhPub(v)"
+							class="layui-btn layui-btn-sm layui-btn-normal">
+							<i class="layui-icon">&#xe642;</i>发布
+						</button>
+						<button ng-click="nhForb(v)"
+							class="layui-btn layui-btn-sm layui-btn-normal">
+							<i class="layui-icon">&#xe640;</i>禁用
+						</button>
+						<button ng-click="nhDetial(v)"
+							class="layui-btn layui-btn-sm layui-btn-danger">
+							<i class="layui-icon">&#xe64c;</i>详情
+						</button>
+					</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+
+	<div id="layuiPageForTest1"></div>
+</div>
+
+
+<div id="newHouseAdd" hidden="true">
+	<div style="padding: 20px">
+		<form class="layui-form">
+			<div class="layui-form-item">
+				<label class="layui-form-label">house</label>
+				<div class="layui-input-inline">
+					<input type="text" name="rolename" ng-model="roleInfo.name"
+						lay-verify="required|username" placeholder="ye"
+						autocomplete="off" class="layui-input">
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<label class="layui-form-label">llala</label>
+				<div class="layui-input-inline">
+					<textarea name="meo" ng-model="roleInfo.meo"
+						lay-verify="required|textarea|length200" placeholder="te"
+						autocomplete="off" class="layui-textarea"></textarea>
+				</div>
+			</div>
+			<div class="layui-form-item">
+				<div class="layui-input-block">
+					<button class="layui-btn" lay-submit lay-filter="formRole">确定</button>
+					<button type="reset" class="layui-btn layui-btn-primary">取消</button>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+ 

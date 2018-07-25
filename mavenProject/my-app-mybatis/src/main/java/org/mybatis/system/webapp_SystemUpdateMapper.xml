@@ -9,6 +9,9 @@
 	</update>
 	<update id="updateRole">
 		update t_sys_role set name =#{name},meo=#{meo} where id =#{id}
+		<set>
+			
+		</set>
 	</update>
 	 
 </mapper>

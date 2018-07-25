@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 可以随意在当前目录 加*mapper.xml -->
+<mapper namespace="org.mybatis.newHouse">
+
+	<!-- 开启二级缓存 -->
+	<cache />
+
+	<select id="getNewHouseList" resultType="org.mybatis.newHouse.NewHouse" >
+		select upt.id as id, upt.name as uptownName,upt.t_d_areainfo_id,upt.avg_price as avgPrice
+		,upt.t_d_sale_status_id,t.commission as commission,upt.manager as manager
+		,upt.developer as developer,upt.house_holds as allHolds,DATE_FORMAT(upt.completion_date,'%Y-%m-%d') as transferDate
+		,area.name as cityArea,st.name as saleStatus,t.rebateName as rebateName,upt.forbidden as forb
+		from
+		(
+			select
+			sort_index,id,t_d_sale_status_id,name,t_d_areainfo_id,avg_price,manager,completion_date,house_holds,developer,forbidden
+			from t_b_uptown where 1=1
+		) upt left JOIN (
+			select com.t_b_uptown_id,com.start_date,com.commission,rtemp.name as
+			rebateName from t_b_uptown_commission com
+			left join t_d_rebate_mode rtemp ON com.t_d_rebate_mode_id = rtemp.id where
+			com.flag=1 and com.forbidden=0 and com.audit_status=2
+		)t on t.t_b_uptown_id = upt.id
+		LEFT JOIN t_d_areainfo area on area.id = upt.t_d_areainfo_id
+		LEFT JOIN t_d_sale_status st on st.id=upt.t_d_sale_status_id where 1=1
+		order by upt.sort_index desc, upt.id desc limit #{page},#{limit};
+	</select>
+
+
+</mapper>

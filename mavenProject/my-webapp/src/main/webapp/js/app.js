@@ -54,6 +54,7 @@ define([ 'angularAMD', 'angular-route', 'angular', 'jquery', 'systemConfigs',
 			 
 			$.post("/webapp/system/getMenu.do", {}, function(res) {// 预留角色参数，后期将以角色获取菜单。
 				// console.log("menus:"+res);
+				
 				$scope.menus =  res.data;//如果静态资源保持高度一致  这句话就是多余的
 				
 				$scope.$digest();//对于$digest来说，在父作用域和子作用域上调用是有差别的，但是，对于$apply来说，这两者一样。$apply可以带参数，它可以接受一个函数，然后在应用数据之后，调用这个函数。
@@ -79,6 +80,7 @@ define([ 'angularAMD', 'angular-route', 'angular', 'jquery', 'systemConfigs',
 						click : function(node) {//点击菜单 
 							//点击菜单   设置 选项卡  切换
 							var $ = layui.jquery, element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
+							
 							if ($.inArray(node.id, $scope.layIds) == -1&&node.urlKey) {
 								$scope.layIds.push(node.id);
 								element.tabAdd('demo', {
@@ -119,7 +121,7 @@ define([ 'angularAMD', 'angular-route', 'angular', 'jquery', 'systemConfigs',
 		$scope.layIds = [];
 		layui.use('element', function() {
 			var $ = layui.jquery, element = layui.element; //Tab的切换功能，切换事件监听等，需要依赖element模块
-			var count = 0;
+			var count = 1;
 			nextE($scope.menus,count);
 			
 			element.tabAdd('demo', {
@@ -136,6 +138,7 @@ define([ 'angularAMD', 'angular-route', 'angular', 'jquery', 'systemConfigs',
 				});
 			}); 
 			element.tabChange('demo',$scope.currMenuNode.id);
+			
 			$scope.$state.go($scope.currMenuNode.urlKey||'dept');//路由跳转
 		});
 
@@ -143,8 +146,9 @@ define([ 'angularAMD', 'angular-route', 'angular', 'jquery', 'systemConfigs',
 
 	//路由加载
 	var loadtime = function(scope, $stateProvider) {
-		//路由加载 的是静态数据    sysMenus是静态值，如不能保持数据库一致要出问题。
+		//路由加载 的是静态数据    sysMenus是静态值，如不能保持数据库一致要出问题。 动态赋值路由不认
 		sysMenus.forEach(function(value) {
+			
 			if (value.urlKey) {
 				$stateProvider.state(value.urlKey, angularAMD.route({
 					url : '/' + value.urlKey,

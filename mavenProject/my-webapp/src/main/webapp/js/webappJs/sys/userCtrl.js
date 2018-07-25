@@ -2,9 +2,8 @@
  * 
  */
 define([ 'app' ], function(app) {
-	app.controller('userCtrl', [
-			'$scope',
-			function($scope) {
+	app.controller('userCtrl', [ '$scope', function($scope,$stateParams) {
+		debugger
 				$scope.column = [ // 列
 				{
 					field : "ID",

@@ -21,8 +21,24 @@
 	<context:component-scan
 		base-package="com.mycompany.app.*"></context:component-scan>
 
-	<!-- spring-jdbc -->
-	<bean id="dataSource"
+	<!-- spring-jdbc --> 
+	<bean id="dataSource_ruili" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="${jdbc.driver}" />
+		<property name="url" value="${jdbc.url_ruili}" />
+		<property name="username" value="${jdbc.username_ruili}" />
+		<property name="password" value="${jdbc.password_ruili}" />
+		<property name="timeBetweenEvictionRunsMillis" value="3000000" />
+		<property name="minEvictableIdleTimeMillis" value="2000000" />
+		<property name="minIdle" value="3" />
+		<property name="initialSize" value="1" />
+		<property name="validationQuery" value="SELECT 1" />
+		<property name="testWhileIdle" value="true" />
+		<!--  借出时不执行validationQuery -->
+		<property name="testOnBorrow" value="false" />
+		<property name="maxIdle" value="100" />
+		<property name="maxActive" value="130" />
+	</bean>
+	<bean id="dataSource_sys"
 		class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="${jdbc.driver}" />
 		<property name="url" value="${jdbc.url}" />
@@ -39,7 +55,18 @@
 		<property name="maxIdle" value="100" />
 		<property name="maxActive" value="130" />
 	</bean>
-
+	<!-- 配置多数据源映射 -->
+	<bean id="dataSource" class="com.mycompany.app.common.ChooseDataSource" >
+	     <property name="targetDataSources">
+	         <map key-type="java.lang.String">
+	             <entry value-ref="dataSource_sys" key="dataSource_sys"></entry>
+	             <entry value-ref="dataSource_ruili" key="dataSource_ruili"></entry>
+	         </map>
+	     </property>
+	     <!-- 默认数据源 -->
+	     <property name="defaultTargetDataSource" ref="dataSource_sys" >
+	     </property>
+	</bean>
 	<!-- dataSource -->
 	<bean id="sqlSessionFactory"
 		class="org.mybatis.spring.SqlSessionFactoryBean">
@@ -50,8 +77,8 @@
 
 		<property name="mapperLocations">
 			<array>
-				<value>classpath:org/mybatis/test/*.xml</value>
-				<value>classpath:org/mybatis/system/*.xml</value>
+				<value>classpath:org/mybatis/*.xml</value>
+				<value>classpath:org/mybatis/*/*.xml</value>
 			</array>
 		</property>
 

@@ -1,10 +1,15 @@
 eclipse.preferences.version=1
 encoding//src/main/java/com/mycompany/app/common/CacheRedisCommon.java=UTF-8
+encoding//src/main/java/com/mycompany/app/common/QiniuCommon.java=UTF-8
+encoding//src/main/java/com/mycompany/app/service/impl/SystemRoleService.java=UTF-8
+encoding//src/main/webapp/ftl/nh/nh.html=UTF-8
+encoding//src/main/webapp/ftl/nh/nh_detail.html=UTF-8
 encoding//src/main/webapp/ftl/sys/dept.html=UTF-8
 encoding//src/main/webapp/ftl/sys/deptAddForm.html=UTF-8
 encoding//src/main/webapp/ftl/sys/menu.html=UTF-8
 encoding//src/main/webapp/ftl/sys/menuAddForm.html=UTF-8
 encoding//src/main/webapp/ftl/sys/role.html=UTF-8
 encoding//src/main/webapp/ftl/sys/user.html=UTF-8
+encoding//src/main/webapp/ftl/test/test.html=UTF-8
 encoding//src/main/webapp/js/webappJs/sys/userCtrl.js=UTF-8
 encoding/<project>=UTF-8
