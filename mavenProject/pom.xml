@@ -57,12 +57,12 @@
 		<repository>
 			<id>maven-releases</id>
 			<name>Nexus-releases-repositories</name>
-			<url>http://localhost:8081/repository/maven-releases/</url>
+			<url>https://localhost:8081/repository/maven-releases/</url>
 		</repository>
 		<snapshotRepository>
 			<id>maven-snapshots</id>
 			<name>Nexus-snapshots-repositories</name>
-			<url>http://localhost:8081/repository/maven-snapshots/</url>
+			<url>https://localhost:8081/repository/maven-snapshots/</url>
 		</snapshotRepository>
 	</distributionManagement>
 
